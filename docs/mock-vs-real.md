@@ -50,9 +50,17 @@ system. Every record is tagged `mock: true`.
 - **Appeal tracking** — `POST /api/mock/appeals/:id/advance` moves a synthetic
   status through Submitted → Under review → Decision (a judges-only control).
 
+## Demo sign-in
+
+- **Sign in** stores only a **display name** in the browser (localStorage) to
+  personalise the session and attribute filed grievances. There is **no
+  password, OTP, Aadhaar, PAN or phone** field, nothing is verified, and nothing
+  is sent to any server. It is purely cosmetic session state.
+
 ## Not used
 
-- **CPGRAMS account / login** — none. There is no field to enter one.
+- **Real CPGRAMS account / login / credentials** — none. The app never asks for
+  or transmits a real password, OTP, or government identifier.
 - **Government API integration** — none. No live government system is contacted.
 - **Real citizen identity** — none. All data is synthetic.
 

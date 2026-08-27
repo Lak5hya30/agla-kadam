@@ -16,7 +16,8 @@ const ROWS: { capability: string; status: "Real" | "Mock" | "Not used" | "Synthe
   { capability: "Feedback submission", status: "Mock" },
   { capability: "Appeal submission", status: "Mock" },
   { capability: "Appeal tracking", status: "Mock" },
-  { capability: "CPGRAMS login", status: "Not used" },
+  { capability: "Demo sign-in (display name only)", status: "Mock" },
+  { capability: "Real CPGRAMS login / passwords / OTP", status: "Not used" },
   { capability: "Government API integration", status: "Not used" },
   { capability: "Citizen data", status: "Synthetic" },
 ];

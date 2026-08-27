@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useLang } from "@/components/LanguageProvider";
+import { useAuth } from "@/components/AuthProvider";
 import { PrivacyWarning } from "@/components/Disclaimer";
 import { saveAdhocCase, ADHOC_ID } from "@/lib/adhocCase";
 import type { DemoCase } from "@/lib/types";
@@ -18,6 +19,7 @@ const SAMPLE_RESPONSE =
 
 export default function FilePage() {
   const { lang } = useLang();
+  const { user } = useAuth();
   const router = useRouter();
   const L = (en: string, hi: string) => (lang === "hi" ? hi : en);
 
@@ -42,7 +44,7 @@ export default function FilePage() {
       id: ADHOC_ID,
       label: trimmedSubject || L("Your grievance", "आपकी शिकायत"),
       tagline: category,
-      citizen: { name: L("You", "आप") },
+      citizen: { name: user?.name ?? L("You", "आप") },
       grievance: {
         title: trimmedSubject || L("Your grievance", "आपकी शिकायत"),
         text: grievance.trim(),

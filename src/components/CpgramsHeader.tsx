@@ -11,6 +11,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { useLang } from "./LanguageProvider";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { AuthControl } from "./AuthControl";
 import { GovSeal } from "./GovSeal";
 
 const UTILITY_LINKS = [
@@ -113,13 +114,15 @@ export function CpgramsHeader() {
               );
             })}
           </div>
-          <div className="hidden items-center pr-1 sm:flex">
+          <div className="hidden items-center gap-2 pr-1 sm:flex">
             <LanguageSwitcher />
+            <AuthControl />
           </div>
         </div>
       </nav>
-      <div className="container-page flex justify-end py-1 sm:hidden">
+      <div className="container-page flex items-center justify-end gap-2 py-1 sm:hidden">
         <LanguageSwitcher />
+        <AuthControl />
       </div>
     </header>
   );

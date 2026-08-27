@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { LanguageProvider } from "@/components/LanguageProvider";
+import { AuthProvider } from "@/components/AuthProvider";
 import { DemoRibbon } from "@/components/DemoRibbon";
 import { CpgramsHeader } from "@/components/CpgramsHeader";
 import { CpgramsFooter } from "@/components/CpgramsFooter";
@@ -27,16 +28,18 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <LanguageProvider>
-          <a
-            href="#main"
-            className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-accent focus:px-4 focus:py-2 focus:text-white"
-          >
-            Skip to content
-          </a>
-          <DemoRibbon />
-          <CpgramsHeader />
-          <main id="main">{children}</main>
-          <CpgramsFooter />
+          <AuthProvider>
+            <a
+              href="#main"
+              className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-accent focus:px-4 focus:py-2 focus:text-white"
+            >
+              Skip to content
+            </a>
+            <DemoRibbon />
+            <CpgramsHeader />
+            <main id="main">{children}</main>
+            <CpgramsFooter />
+          </AuthProvider>
         </LanguageProvider>
       </body>
     </html>

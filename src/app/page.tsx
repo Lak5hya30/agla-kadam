@@ -3,6 +3,7 @@
 import { Suspense } from "react";
 import Link from "next/link";
 import { useLang } from "@/components/LanguageProvider";
+import { useAuth } from "@/components/AuthProvider";
 import { Ticker } from "@/components/Ticker";
 import { DemoQuickStart } from "@/components/DemoQuickStart";
 
@@ -20,6 +21,7 @@ const SERVICES: { icon: string; en: string; hi: string }[] = [
 
 export default function HomePage() {
   const { t, lang } = useLang();
+  const { user } = useAuth();
   const L = (en: string, hi: string) => (lang === "hi" ? hi : en);
 
   return (
@@ -33,7 +35,9 @@ export default function HomePage() {
         <div className="container-page grid gap-6 py-8 sm:grid-cols-2 sm:items-center">
           <div className="space-y-3">
             <p className="text-xs font-bold uppercase tracking-widest text-gov-saffron">
-              {L("Grievance Resolution Companion", "शिकायत समाधान साथी")}
+              {user
+                ? L(`Namaste, ${user.name}`, `नमस्ते, ${user.name}`)
+                : L("Grievance Resolution Companion", "शिकायत समाधान साथी")}
             </p>
             <h1 className="text-2xl font-extrabold leading-tight sm:text-3xl">
               {L("Your grievance says", "आपकी शिकायत कहती है")} “{L("Disposed", "निपटाई गई")}.”

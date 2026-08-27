@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  @apply bg-surface-soft text-ink antialiased;
+  font-size: 1rem; /* 16px minimum body text */
+  line-height: 1.6;
+}
+
+/* Visible, high-contrast focus indicator for keyboard users (§47) */
+:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline: 3px solid #2f5fe0;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Respect reduced-motion preferences (§28, §47) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-content px-4 sm:px-6;
+  }
+
+  .card {
+    @apply rounded-2xl border border-black/5 bg-surface p-5 shadow-card sm:p-6;
+  }
+
+  /* Touch targets at least ~44px (§27) */
+  .btn {
+    @apply inline-flex min-h-[44px] items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-base font-semibold transition-colors;
+  }
+  .btn-primary {
+    @apply btn bg-accent text-white hover:bg-accent-hover;
+  }
+  .btn-secondary {
+    @apply btn border border-accent/30 bg-accent-soft text-accent hover:bg-accent-soft/70;
+  }
+  .btn-ghost {
+    @apply btn border border-black/10 bg-surface text-ink-soft hover:bg-surface-sunken;
+  }
+
+  .evidence-mark {
+    @apply rounded bg-yellow-200/80 px-0.5 font-medium text-ink shadow-[inset_0_-2px_0_rgba(180,140,0,0.4)];
+  }
+
+  .pill {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-sm font-semibold;
+  }
+}

@@ -5,7 +5,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useLang } from "@/components/LanguageProvider";
 import { useJourney } from "@/components/JourneyProvider";
-import { getCase } from "@/lib/caseData";
+import { useResolvedCase } from "@/lib/useCase";
+import { CaseGuard } from "@/components/CaseGuard";
 import type { MockAppealStage } from "@/lib/types";
 
 const CHECK_KEYS = ["verify.c1", "verify.c2", "verify.c3", "verify.c4", "verify.c5"];
@@ -14,13 +15,13 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
   const { t } = useLang();
   const router = useRouter();
   const { state, update } = useJourney();
-  const c = getCase(params.id);
+  const { demoCase: c, ready } = useResolvedCase(params.id);
 
   const [checks, setChecks] = useState<boolean[]>(Array(CHECK_KEYS.length).fill(false));
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  if (!c) return null;
+  if (!ready || !c) return <CaseGuard ready={ready} hasCase={!!c} />;
 
   const allChecked = checks.every(Boolean);
   const appealText = state.appealText ?? "";

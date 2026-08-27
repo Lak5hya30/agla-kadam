@@ -5,8 +5,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useLang } from "@/components/LanguageProvider";
 import { PrivacyWarning } from "@/components/Disclaimer";
-
-export const FILING_KEY = "agla-kadam.filing";
+import { saveAdhocCase, ADHOC_ID } from "@/lib/adhocCase";
+import type { DemoCase } from "@/lib/types";
 
 const CATEGORIES = [
   "Post", "Telecom", "Banking", "Insurance", "Education",
@@ -34,23 +34,38 @@ export default function FilePage() {
       setError(L("Please describe your grievance (at least a sentence).", "कृपया अपनी शिकायत लिखें (कम से कम एक वाक्य)।"));
       return;
     }
-    const filing = {
-      category,
-      jurisdiction,
-      subject: subject.trim(),
-      grievance: grievance.trim(),
-      response: response.trim(),
+    const today = new Date().toISOString().slice(0, 10);
+    const trimmedSubject = subject.trim();
+    // Build a first-class ad-hoc case so the filing flows through the SAME
+    // journey as the curated demo cases (analysis → feedback → appeal → tracking).
+    const adhoc: DemoCase = {
+      id: ADHOC_ID,
+      label: trimmedSubject || L("Your grievance", "आपकी शिकायत"),
+      tagline: category,
+      citizen: { name: L("You", "आप") },
+      grievance: {
+        title: trimmedSubject || L("Your grievance", "आपकी शिकायत"),
+        text: grievance.trim(),
+        submittedAt: today,
+      },
+      response: {
+        text: response.trim() || L("(No department response provided.)", "(विभाग का कोई जवाब नहीं दिया गया।)"),
+        receivedAt: today,
+      },
+      caseContext: {
+        jurisdiction,
+        status: "disposed",
+        disposedAt: today,
+        feedback: "none",
+      },
+      hasCachedAnalysis: false,
     };
-    try {
-      sessionStorage.setItem(FILING_KEY, JSON.stringify(filing));
-    } catch {
-      /* ignore */
-    }
-    router.push("/file/result");
+    saveAdhocCase(adhoc);
+    router.push(`/case/${ADHOC_ID}`);
   }
 
   return (
-    <div className="container-page space-y-5 py-6">
+    <div className="container-reading space-y-5 py-6">
       <div>
         <h1 className="section-title">{L("Lodge a grievance", "शिकायत दर्ज करें")}</h1>
         <p className="mt-3 text-sm text-ink-soft">

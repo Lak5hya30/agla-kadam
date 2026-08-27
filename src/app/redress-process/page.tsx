@@ -38,7 +38,7 @@ export default function RedressProcessPage() {
   ];
 
   return (
-    <div className="container-page space-y-6 py-6">
+    <div className="container-reading space-y-6 py-6">
       <div>
         <h1 className="section-title">{L("Redress Process", "निवारण प्रक्रिया")}</h1>
         <p className="mt-3 text-sm text-ink-soft">

@@ -4,7 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { useLang } from "@/components/LanguageProvider";
 import { useJourney } from "@/components/JourneyProvider";
-import { getCase } from "@/lib/caseData";
+import { useResolvedCase } from "@/lib/useCase";
+import { CaseGuard } from "@/components/CaseGuard";
 import type { MockAppealStage } from "@/lib/types";
 
 const STAGES: { stage: MockAppealStage; key: string }[] = [
@@ -16,10 +17,10 @@ const STAGES: { stage: MockAppealStage; key: string }[] = [
 export default function TrackingPage({ params }: { params: { id: string } }) {
   const { t } = useLang();
   const { state, update } = useJourney();
-  const c = getCase(params.id);
+  const { demoCase: c, ready } = useResolvedCase(params.id);
   const [busy, setBusy] = useState(false);
 
-  if (!c) return null;
+  if (!ready || !c) return <CaseGuard ready={ready} hasCase={!!c} />;
 
   if (!state.appealId) {
     return (

@@ -54,7 +54,7 @@ const HOW_STEPS = [
 export default function HowPage() {
   const { t } = useLang();
   return (
-    <div className="container-page space-y-6 py-6">
+    <div className="container-reading space-y-6 py-6">
       <h1 className="text-2xl font-extrabold text-ink">{t("mockreal.title")}</h1>
 
       <section className="grid gap-3 sm:grid-cols-2">

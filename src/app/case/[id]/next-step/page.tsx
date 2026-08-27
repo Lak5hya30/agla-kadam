@@ -6,7 +6,8 @@ import { useRouter } from "next/navigation";
 import { useLang } from "@/components/LanguageProvider";
 import { useJourney } from "@/components/JourneyProvider";
 import { ReadAloud } from "@/components/ReadAloud";
-import { getCase } from "@/lib/caseData";
+import { useResolvedCase } from "@/lib/useCase";
+import { CaseGuard } from "@/components/CaseGuard";
 import { decideNextAction } from "@/lib/policyEngine";
 import type { CaseContext } from "@/lib/types";
 
@@ -14,7 +15,7 @@ export default function NextStepPage({ params }: { params: { id: string } }) {
   const { t } = useLang();
   const router = useRouter();
   const { state, update } = useJourney();
-  const c = getCase(params.id);
+  const { demoCase: c, ready } = useResolvedCase(params.id);
   const [choice, setChoice] = useState<"resolved" | "unresolved" | null>(
     state.resolvedChoice ?? null
   );
@@ -27,7 +28,7 @@ export default function NextStepPage({ params }: { params: { id: string } }) {
     };
   }, [c, state.feedbackRating]);
 
-  if (!c || !ctx) return null;
+  if (!ready || !c || !ctx) return <CaseGuard ready={ready} hasCase={!!c} />;
 
   const decision = decideNextAction(ctx);
 

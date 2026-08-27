@@ -6,46 +6,54 @@ import { useLang } from "@/components/LanguageProvider";
 import { useJourney } from "@/components/JourneyProvider";
 import { ComparisonCard } from "@/components/ComparisonCard";
 import { ReadAloud } from "@/components/ReadAloud";
-import { getCase } from "@/lib/caseData";
 import { toDisplayCoverage } from "@/lib/schema";
 import type { AnalysisSource } from "@/lib/analyze";
+import { useResolvedCase } from "@/lib/useCase";
+import { ADHOC_ID } from "@/lib/adhocCase";
+import { CaseGuard } from "@/components/CaseGuard";
+import type { DemoCase } from "@/lib/types";
 
 export default function AnalysisPage({ params }: { params: { id: string } }) {
   const { t, lang } = useLang();
   const { state, update } = useJourney();
-  const c = getCase(params.id);
+  const { demoCase: c, ready } = useResolvedCase(params.id);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const runAnalysis = useCallback(async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const res = await fetch("/api/analyze-resolution", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ caseId: params.id }),
-      });
-      if (!res.ok) throw new Error("request failed");
-      const data = await res.json();
-      update({
-        analysis: data.analysis,
-        analysisSource: data.source,
-        fallbackReason: data.fallbackReason ?? undefined,
-      });
-    } catch {
-      setError(
-        "We could not run the analysis just now. Please try again."
-      );
-    } finally {
-      setLoading(false);
-    }
-  }, [params.id, update]);
+  const runAnalysis = useCallback(
+    async (theCase: DemoCase) => {
+      setLoading(true);
+      setError(null);
+      try {
+        const body =
+          theCase.id === ADHOC_ID
+            ? { grievance: theCase.grievance.text, response: theCase.response.text }
+            : { caseId: theCase.id };
+        const res = await fetch("/api/analyze-resolution", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        });
+        if (!res.ok) throw new Error("request failed");
+        const data = await res.json();
+        update({
+          analysis: data.analysis,
+          analysisSource: data.source,
+          fallbackReason: data.fallbackReason ?? undefined,
+        });
+      } catch {
+        setError("We could not run the analysis just now. Please try again.");
+      } finally {
+        setLoading(false);
+      }
+    },
+    [update]
+  );
 
   useEffect(() => {
-    if (!state.analysis && !loading) void runAnalysis();
+    if (c && !state.analysis && !loading) void runAnalysis(c);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [c]);
 
   const analysis = state.analysis;
 
@@ -65,7 +73,7 @@ export default function AnalysisPage({ params }: { params: { id: string } }) {
     return { items, tally };
   }, [analysis]);
 
-  if (!c) return null;
+  if (!ready || !c) return <CaseGuard ready={ready} hasCase={!!c} />;
 
   if (loading || !analysis) {
     return (
@@ -74,7 +82,7 @@ export default function AnalysisPage({ params }: { params: { id: string } }) {
         {error ? (
           <div className="card space-y-3">
             <p className="text-status-missing">{error}</p>
-            <button className="btn-primary" onClick={runAnalysis}>
+            <button className="btn-primary" onClick={() => runAnalysis(c)}>
               Try again
             </button>
           </div>
@@ -102,7 +110,7 @@ export default function AnalysisPage({ params }: { params: { id: string } }) {
         <SourceBadge source={state.analysisSource} />
       </div>
 
-      {state.analysisSource === "cached" && state.fallbackReason && (
+      {state.fallbackReason && (
         <div
           role="note"
           className="rounded-xl border border-amber-300/60 bg-amber-50 px-4 py-3 text-sm text-amber-900"
@@ -158,15 +166,16 @@ export default function AnalysisPage({ params }: { params: { id: string } }) {
 function SourceBadge({ source }: { source?: AnalysisSource }) {
   const { t } = useLang();
   if (!source) return null;
-  const live = source === "live";
+  const map = {
+    live: { cls: "bg-status-okSoft text-status-ok", icon: "🟢", label: t("common.live") },
+    cached: { cls: "bg-surface-sunken text-ink-soft", icon: "💾", label: t("common.cached") },
+    offline: { cls: "bg-gov-saffronSoft text-gov-saffron", icon: "🧮", label: "Offline comparison" },
+  } as const;
+  const m = map[source];
   return (
-    <span
-      className={`pill text-sm ${
-        live ? "bg-status-okSoft text-status-ok" : "bg-surface-sunken text-ink-soft"
-      }`}
-    >
-      <span aria-hidden="true">{live ? "🟢" : "💾"}</span>
-      {live ? t("common.live") : t("common.cached")}
+    <span className={`pill text-sm ${m.cls}`}>
+      <span aria-hidden="true">{m.icon}</span>
+      {m.label}
     </span>
   );
 }

@@ -3,13 +3,14 @@
 import Link from "next/link";
 import { useLang } from "@/components/LanguageProvider";
 import { useJourney } from "@/components/JourneyProvider";
-import { getCase } from "@/lib/caseData";
+import { useResolvedCase } from "@/lib/useCase";
+import { CaseGuard } from "@/components/CaseGuard";
 
 export default function SuccessPage({ params }: { params: { id: string } }) {
   const { t } = useLang();
   const { state } = useJourney();
-  const c = getCase(params.id);
-  if (!c) return null;
+  const { demoCase: c, ready } = useResolvedCase(params.id);
+  if (!ready || !c) return <CaseGuard ready={ready} hasCase={!!c} />;
 
   if (!state.appealId) {
     return (

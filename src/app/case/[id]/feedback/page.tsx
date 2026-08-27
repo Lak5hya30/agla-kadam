@@ -5,7 +5,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useLang } from "@/components/LanguageProvider";
 import { useJourney } from "@/components/JourneyProvider";
-import { getCase } from "@/lib/caseData";
+import { useResolvedCase } from "@/lib/useCase";
+import { CaseGuard } from "@/components/CaseGuard";
 import type { FeedbackStatus } from "@/lib/types";
 
 const RATINGS: { value: FeedbackStatus; key: string; icon: string }[] = [
@@ -18,7 +19,7 @@ export default function FeedbackPage({ params }: { params: { id: string } }) {
   const { t, lang } = useLang();
   const router = useRouter();
   const { state, update } = useJourney();
-  const c = getCase(params.id);
+  const { demoCase: c, ready } = useResolvedCase(params.id);
 
   const suggested = useMemo(() => {
     const analysis = state.analysis;
@@ -41,7 +42,7 @@ export default function FeedbackPage({ params }: { params: { id: string } }) {
   const isChecked = (id: string) => !unchecked[id];
   const [submitting, setSubmitting] = useState(false);
 
-  if (!c) return null;
+  if (!ready || !c) return <CaseGuard ready={ready} hasCase={!!c} />;
 
   if (!state.analysis) {
     return (

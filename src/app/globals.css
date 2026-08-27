@@ -34,8 +34,15 @@ body {
 }
 
 @layer components {
+  /* Wide chrome container — header, hero, footer span nearly full width
+     (logo hard-left, utility links hard-right), like a government portal. */
   .container-page {
-    @apply mx-auto w-full max-w-content px-4 sm:px-6;
+    @apply mx-auto w-full max-w-[100rem] px-4 sm:px-6 lg:px-10;
+  }
+
+  /* Comfortable reading column for content pages (forms, journey, analysis). */
+  .container-reading {
+    @apply mx-auto w-full max-w-4xl px-4 sm:px-6;
   }
 
   .card {

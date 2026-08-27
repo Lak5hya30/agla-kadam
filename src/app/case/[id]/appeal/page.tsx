@@ -5,7 +5,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useLang } from "@/components/LanguageProvider";
 import { useJourney } from "@/components/JourneyProvider";
-import { getCase } from "@/lib/caseData";
+import { useResolvedCase } from "@/lib/useCase";
+import { CaseGuard } from "@/components/CaseGuard";
 import { decideNextAction } from "@/lib/policyEngine";
 import { unresolvedItems, composeAppeal, type ComposedAppeal } from "@/lib/appeal";
 import { StatusBadge } from "@/components/StatusBadge";
@@ -15,7 +16,7 @@ export default function AppealPage({ params }: { params: { id: string } }) {
   const { t } = useLang();
   const router = useRouter();
   const { state, update } = useJourney();
-  const c = getCase(params.id);
+  const { demoCase: c, ready } = useResolvedCase(params.id);
 
   const items = useMemo(
     () => (state.analysis ? unresolvedItems(state.analysis) : []),
@@ -30,7 +31,7 @@ export default function AppealPage({ params }: { params: { id: string } }) {
   const [draft, setDraft] = useState<ComposedAppeal | null>(null);
   const [openSources, setOpenSources] = useState<Record<number, boolean>>({});
 
-  if (!c) return null;
+  if (!ready || !c) return <CaseGuard ready={ready} hasCase={!!c} />;
 
   // Deterministic guard: appeal must actually be available for this case.
   const ctx = {

@@ -56,10 +56,10 @@ export default function HomePage() {
                 {L("Check my resolution", "मेरा समाधान जाँचें")} →
               </Link>
               <Link
-                href="/how"
+                href="/file"
                 className="btn inline-flex border border-white/40 bg-white/10 text-white hover:bg-white/20"
               >
-                {L("How it works", "यह कैसे काम करता है")}
+                {L("Lodge a grievance", "शिकायत दर्ज करें")}
               </Link>
             </div>
           </div>

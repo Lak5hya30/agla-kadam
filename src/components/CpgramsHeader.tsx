@@ -23,7 +23,7 @@ const UTILITY_LINKS = [
 const NAV = [
   { href: "/demo", en: "View Status", hi: "स्थिति देखें", primary: false },
   { href: "/redress-process", en: "Redress Process", hi: "निवारण प्रक्रिया", primary: false },
-  { href: "/demo", en: "Grievance", hi: "शिकायत", primary: false },
+  { href: "/file", en: "Lodge Grievance", hi: "शिकायत दर्ज करें", primary: false },
   { href: "/demo", en: "Check Resolution", hi: "समाधान जाँचें", primary: true },
 ];
 

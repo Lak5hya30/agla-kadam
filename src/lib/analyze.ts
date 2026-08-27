@@ -18,8 +18,9 @@ import {
 } from "./schema";
 import { SYSTEM_PROMPT, buildUserPrompt } from "./prompt";
 import { getCachedAnalysis } from "./cases";
+import { heuristicAnalyze } from "./heuristicAnalyze";
 
-export type AnalysisSource = "live" | "cached";
+export type AnalysisSource = "live" | "cached" | "offline";
 
 export interface AnalyzeResult {
   source: AnalysisSource;
@@ -68,6 +69,36 @@ export async function analyzeResolution(
         "Live analysis is temporarily unavailable. Showing the previously generated analysis for this synthetic demo case.",
     };
   }
+}
+
+/**
+ * Analyse an AD-HOC (user-filed) grievance/response pair with no cached
+ * fixture. Uses OpenAI when a key is configured; otherwise falls back to
+ * the deterministic offline analyzer, clearly labelled as such.
+ */
+export async function analyzeAdHoc(
+  grievance: string,
+  response: string
+): Promise<AnalyzeResult> {
+  if (hasKey()) {
+    try {
+      const analysis = await callOpenAI(grievance, response);
+      return { source: "live", analysis };
+    } catch {
+      return {
+        source: "offline",
+        analysis: heuristicAnalyze(grievance, response),
+        fallbackReason:
+          "Live AI analysis was unavailable, so this uses a basic offline comparison. Add an OpenAI key for full AI analysis.",
+      };
+    }
+  }
+  return {
+    source: "offline",
+    analysis: heuristicAnalyze(grievance, response),
+    fallbackReason:
+      "No OpenAI key is configured, so this uses a basic offline keyword comparison. It is not AI analysis. Add an OpenAI key for full AI analysis.",
+  };
 }
 
 async function callOpenAI(

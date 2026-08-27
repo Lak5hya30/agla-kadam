@@ -26,6 +26,11 @@ users in-app at `/how`.
 - **OpenAI analysis** — when `OPENAI_API_KEY` is set, the app calls the model to
   compare the grievance and response and returns a validated structured analysis.
   Without a key it uses cached fixtures and labels them "Cached demo analysis".
+- **User grievance filing** — the "Lodge a grievance" form lets a citizen enter
+  their own grievance (and optional department response) and run the checker.
+  With a key this uses OpenAI; without a key it falls back to a deterministic
+  **offline keyword comparison**, clearly labelled "Offline comparison" and never
+  presented as AI. Collects no personal identifiers.
 - **Structured output** — enforced by a Zod schema plus cross-reference checks.
 - **Policy logic** — jurisdiction, appeal window, feedback gating, availability.
 - **State machine** — invalid transitions (e.g. DISPOSED → APPEAL_SUBMITTED) are

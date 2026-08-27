@@ -8,6 +8,7 @@ import { ComparisonCard } from "@/components/ComparisonCard";
 import { ReadAloud } from "@/components/ReadAloud";
 import { getCase } from "@/lib/caseData";
 import { toDisplayCoverage } from "@/lib/schema";
+import type { AnalysisSource } from "@/lib/analyze";
 
 export default function AnalysisPage({ params }: { params: { id: string } }) {
   const { t, lang } = useLang();
@@ -154,7 +155,7 @@ export default function AnalysisPage({ params }: { params: { id: string } }) {
   );
 }
 
-function SourceBadge({ source }: { source?: "live" | "cached" }) {
+function SourceBadge({ source }: { source?: AnalysisSource }) {
   const { t } = useLang();
   if (!source) return null;
   const live = source === "live";

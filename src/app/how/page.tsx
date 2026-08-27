@@ -7,6 +7,8 @@ import { Disclaimer } from "@/components/Disclaimer";
 const ROWS: { capability: string; status: "Real" | "Mock" | "Not used" | "Synthetic" }[] = [
   { capability: "Citizen UI", status: "Real" },
   { capability: "OpenAI grievance-response comparison", status: "Real" },
+  { capability: "User grievance filing form", status: "Real" },
+  { capability: "Offline comparison (when no API key)", status: "Real" },
   { capability: "Request extraction", status: "Real" },
   { capability: "Evidence highlighting", status: "Real" },
   { capability: "Hindi explanation", status: "Real" },

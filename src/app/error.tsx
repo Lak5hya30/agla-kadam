@@ -5,7 +5,7 @@ import Link from "next/link";
 /** Global error boundary — never exposes a raw stack trace to the citizen (§46). */
 export default function Error({ reset }: { error: Error; reset: () => void }) {
   return (
-    <div className="mx-auto max-w-content space-y-4 py-10 text-center">
+    <div className="container-page space-y-4 py-10 text-center">
       <p className="text-4xl" aria-hidden="true">😕</p>
       <h1 className="text-2xl font-extrabold text-ink">Something went wrong</h1>
       <p className="text-ink-soft">

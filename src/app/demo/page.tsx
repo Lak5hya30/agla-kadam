@@ -19,7 +19,7 @@ export default function DemoPage() {
   const cases = listCases();
 
   return (
-    <div className="mx-auto max-w-content space-y-6">
+    <div className="container-page space-y-6 py-6">
       <div className="space-y-1">
         <h1 className="text-2xl font-extrabold text-ink">{t("demo.title")}</h1>
         <p className="text-ink-soft">{t("demo.subtitle")}</p>

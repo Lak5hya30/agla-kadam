@@ -15,7 +15,7 @@ export default function CaseLayout({
 
   return (
     <JourneyProvider caseId={params.id}>
-      <div className="mx-auto max-w-content space-y-5">
+      <div className="container-page space-y-5 py-6">
         <JourneySteps />
         {children}
       </div>

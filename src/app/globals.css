@@ -79,3 +79,24 @@ body {
     @apply inline-flex min-h-[40px] items-center gap-1.5 px-3 text-sm font-semibold text-white/90 hover:bg-gov-maroonDark hover:text-white;
   }
 }
+
+/* Notice ticker (CPGRAMS-style marquee). Pauses for reduced-motion users. */
+@keyframes ticker {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+.ticker-track {
+  display: inline-block;
+  white-space: nowrap;
+  animation: ticker 28s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track {
+    animation: none;
+    transform: none;
+  }
+}

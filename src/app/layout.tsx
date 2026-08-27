@@ -1,7 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { LanguageProvider } from "@/components/LanguageProvider";
-import { SiteHeader } from "@/components/SiteHeader";
+import { DemoRibbon } from "@/components/DemoRibbon";
+import { CpgramsHeader } from "@/components/CpgramsHeader";
+import { CpgramsFooter } from "@/components/CpgramsFooter";
 
 export const metadata: Metadata = {
   title: "Agla Kadam — Understand the response. Know your next step.",
@@ -31,21 +33,10 @@ export default function RootLayout({
           >
             Skip to content
           </a>
-          <SiteHeader />
-          <main id="main" className="container-page py-6 sm:py-10">
-            {children}
-          </main>
-          <footer className="mt-10 bg-gov-maroonDark text-white/90">
-            <div className="container-page space-y-1 py-6 text-center text-xs">
-              <p className="font-semibold text-white">
-                Agla Kadam — Understand the response. Know your next step.
-              </p>
-              <p>
-                Hackathon prototype · Synthetic data only · Independent demo, not
-                affiliated with CPGRAMS or the Government of India.
-              </p>
-            </div>
-          </footer>
+          <DemoRibbon />
+          <CpgramsHeader />
+          <main id="main">{children}</main>
+          <CpgramsFooter />
         </LanguageProvider>
       </body>
     </html>

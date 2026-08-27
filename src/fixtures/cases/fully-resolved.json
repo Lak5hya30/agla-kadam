@@ -8,11 +8,14 @@
   },
   "grievance": {
     "title": "Incorrect date of birth in service record",
+    "title_hi": "सेवा रिकॉर्ड में गलत जन्म तिथि",
     "text": "My service record shows an incorrect date of birth. I request that the date of birth be corrected to match my submitted documents, and that I be given a confirmation reference once the correction is made.",
+    "text_hi": "मेरे सेवा रिकॉर्ड में जन्म तिथि गलत दर्ज है। मेरी माँग है कि जन्म तिथि को मेरे जमा किए गए दस्तावेज़ों के अनुसार सही किया जाए, और सुधार होने पर मुझे एक पुष्टि संदर्भ संख्या दी जाए।",
     "submittedAt": "2026-07-28"
   },
   "response": {
     "text": "The service record has been examined and the date of birth has been corrected as per the documents on file. The correction is complete. Confirmation reference COR/2026/44821 has been issued. The grievance is disposed.",
+    "text_hi": "सेवा रिकॉर्ड की जाँच की गई और दस्तावेज़ों के अनुसार जन्म तिथि सही कर दी गई है। सुधार पूरा हो गया है। पुष्टि संदर्भ संख्या COR/2026/44821 जारी की गई है। शिकायत निपटा दी गई है।",
     "receivedAt": "2026-08-18"
   },
   "caseContext": {

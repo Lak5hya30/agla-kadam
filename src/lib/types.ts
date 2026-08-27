@@ -31,11 +31,17 @@ export interface DemoCase {
   };
   grievance: {
     title: string;
+    /** Optional simple-Hindi rendering of the title. */
+    title_hi?: string;
     text: string;
+    /** Optional simple-Hindi rendering of the grievance (meaning, not literal). */
+    text_hi?: string;
     submittedAt: string; // ISO date
   };
   response: {
     text: string;
+    /** Optional simple-Hindi rendering of the response (meaning, not literal). */
+    text_hi?: string;
     receivedAt: string; // ISO date
   };
   caseContext: CaseContext;

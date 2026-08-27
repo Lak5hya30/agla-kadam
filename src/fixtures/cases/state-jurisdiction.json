@@ -8,11 +8,14 @@
   },
   "grievance": {
     "title": "Non-functional street lights on the market road",
+    "title_hi": "बाज़ार सड़क की खराब स्ट्रीट लाइटें",
     "text": "The street lights on the main market road have not been working for several weeks. I request that the faulty street lights be repaired, and that additional lighting be considered near the market crossing for safety.",
+    "text_hi": "मुख्य बाज़ार सड़क की स्ट्रीट लाइटें कई हफ्तों से काम नहीं कर रही हैं। मेरी माँग है कि खराब स्ट्रीट लाइटों की मरम्मत की जाए, और सुरक्षा के लिए बाज़ार चौराहे के पास अतिरिक्त रोशनी पर विचार किया जाए।",
     "submittedAt": "2026-07-15"
   },
   "response": {
     "text": "The matter has been forwarded to the local municipal body for appropriate action. The grievance is disposed at this level.",
+    "text_hi": "मामला उचित कार्रवाई के लिए स्थानीय नगर निकाय को भेज दिया गया है। इस स्तर पर शिकायत निपटा दी गई है।",
     "receivedAt": "2026-08-14"
   },
   "caseContext": {

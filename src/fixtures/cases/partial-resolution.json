@@ -8,11 +8,14 @@
   },
   "grievance": {
     "title": "Damaged road surface and broken roadside barrier near Sector 18",
+    "title_hi": "सेक्टर 18 के पास टूटी सड़क और टूटा सुरक्षा बैरियर",
     "text": "The road near Sector 18 has several deep potholes and a damaged roadside barrier. This has created a safety risk for daily commuters. I request:\n1. Repair of the damaged road surface.\n2. Replacement of the damaged roadside barrier.\n3. Confirmation once both works are completed.",
+    "text_hi": "सेक्टर 18 के पास सड़क पर कई गहरे गड्ढे हैं और किनारे का सुरक्षा बैरियर टूटा हुआ है। इससे रोज़ आने-जाने वालों के लिए खतरा बन गया है। मेरी माँग है:\n1. टूटी सड़क की सतह की मरम्मत।\n2. टूटे सुरक्षा बैरियर को बदला जाए।\n3. दोनों काम पूरे होने पर पुष्टि दी जाए।",
     "submittedAt": "2026-07-10"
   },
   "response": {
     "text": "The matter was examined by the concerned authority. Inspection has been carried out and necessary road repair work has been initiated through the implementing agency. The grievance is disposed.",
+    "text_hi": "मामले की जाँच संबंधित प्राधिकरण द्वारा की गई। निरीक्षण किया गया है और कार्यान्वयन एजेंसी के माध्यम से आवश्यक सड़क मरम्मत का काम शुरू कर दिया गया है। शिकायत निपटा दी गई है।",
     "receivedAt": "2026-08-12"
   },
   "caseContext": {

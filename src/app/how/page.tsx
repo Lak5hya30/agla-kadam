@@ -1,8 +1,52 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useLang } from "@/components/LanguageProvider";
 import { Disclaimer } from "@/components/Disclaimer";
+
+function LiveAiStatus() {
+  const { lang } = useLang();
+  const [status, setStatus] = useState<null | { liveAiConfigured: boolean; model: string | null }>(null);
+  useEffect(() => {
+    fetch("/api/status")
+      .then((r) => r.json())
+      .then(setStatus)
+      .catch(() => setStatus({ liveAiConfigured: false, model: null }));
+  }, []);
+  if (!status) return null;
+  const on = status.liveAiConfigured;
+  const L = (en: string, hi: string) => (lang === "hi" ? hi : en);
+  return (
+    <div
+      role="note"
+      className={`flex items-start gap-2 rounded-xl border px-4 py-3 text-sm ${
+        on
+          ? "border-status-ok/30 bg-status-okSoft text-status-ok"
+          : "border-gov-saffron/30 bg-gov-saffronSoft text-gov-saffron"
+      }`}
+    >
+      <span aria-hidden="true">{on ? "🟢" : "🧮"}</span>
+      <p>
+        <strong>
+          {on
+            ? L("Live OpenAI analysis: enabled", "लाइव OpenAI विश्लेषण: सक्षम")
+            : L("Live OpenAI analysis: not enabled on this deployment", "लाइव OpenAI विश्लेषण: इस परिनियोजन पर सक्षम नहीं")}
+        </strong>
+        {" — "}
+        {on
+          ? L(
+              `Analyses on this deployment use the ${status.model} model.`,
+              `इस परिनियोजन पर विश्लेषण ${status.model} मॉडल से होते हैं।`
+            )
+          : L(
+              "Demo cases show a cached analysis; your own text uses an offline keyword comparison. Add an OpenAI key to enable the live model.",
+              "डेमो केस कैश किया गया विश्लेषण दिखाते हैं; आपका अपना पाठ ऑफ़लाइन तुलना का उपयोग करता है। लाइव मॉडल के लिए OpenAI कुंजी जोड़ें।"
+            )}
+      </p>
+    </div>
+  );
+}
 
 const ROWS: { capability: string; status: "Real" | "Mock" | "Not used" | "Synthetic" }[] = [
   { capability: "Citizen UI", status: "Real" },
@@ -57,6 +101,9 @@ export default function HowPage() {
   return (
     <div className="container-reading space-y-6 py-6">
       <h1 className="text-2xl font-extrabold text-ink">{t("mockreal.title")}</h1>
+
+      <LiveAiStatus />
+
 
       <section className="grid gap-3 sm:grid-cols-2">
         {HOW_STEPS.map((s) => (

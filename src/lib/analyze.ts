@@ -144,5 +144,9 @@ async function callOpenAI(
   if (!validated.ok) {
     throw new Error(`Invalid model output: ${validated.error}`);
   }
-  return validated.analysis;
+  // Verify every cited quote exists verbatim in the source; degrade
+  // unsupported findings to "unclear" (structured output guarantees shape,
+  // not truth).
+  const { groundAnalysis } = await import("./grounding");
+  return groundAnalysis(validated.analysis, grievance, response).analysis;
 }

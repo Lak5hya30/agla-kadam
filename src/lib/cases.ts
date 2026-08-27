@@ -1,40 +1,24 @@
 /**
- * Synthetic case registry + cached-analysis loader.
+ * Analysis loader for synthetic cases (server-oriented; pulls in zod).
+ * Case listing/lookup lives in `caseData.ts` (client-safe).
  *
  * All data here is SYNTHETIC. No real citizens, grievance IDs, or
- * government records. Cases and their cached analyses are validated at
- * load time so a corrupted fixture is caught early (§29, §46).
+ * government records. Cached analyses are validated at load time so a
+ * corrupted fixture is caught early (§29, §46).
  */
-import type { DemoCase } from "./types";
 import { parseAnalysis, type ResolutionAnalysis } from "./schema";
-
-import partialCase from "@/fixtures/cases/partial-resolution.json";
-import resolvedCase from "@/fixtures/cases/fully-resolved.json";
-import stateCase from "@/fixtures/cases/state-jurisdiction.json";
 
 import partialAnalysis from "@/fixtures/analyses/partial-resolution.json";
 import resolvedAnalysis from "@/fixtures/analyses/fully-resolved.json";
 import stateAnalysis from "@/fixtures/analyses/state-jurisdiction.json";
 
-const CASES: DemoCase[] = [
-  partialCase as DemoCase,
-  resolvedCase as DemoCase,
-  stateCase as DemoCase,
-];
+export { listCases, getCase } from "./caseData";
 
 const CACHED_ANALYSES: Record<string, unknown> = {
   "DEMO-001": partialAnalysis,
   "DEMO-002": resolvedAnalysis,
   "DEMO-003": stateAnalysis,
 };
-
-export function listCases(): DemoCase[] {
-  return CASES;
-}
-
-export function getCase(id: string): DemoCase | undefined {
-  return CASES.find((c) => c.id === id);
-}
 
 /**
  * Load and validate the cached analysis for a case. Throws if the fixture

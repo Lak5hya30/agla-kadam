@@ -63,4 +63,19 @@ body {
   .pill {
     @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-sm font-semibold;
   }
+
+  /* Official-style section heading — ruled underline, like a civic portal. */
+  .section-title {
+    @apply flex items-center gap-2 border-b-2 border-gov-saffron/70 pb-2 text-lg font-bold uppercase tracking-wide text-gov-maroon;
+  }
+
+  /* Small links in the top utility bar. */
+  .utility-link {
+    @apply inline-flex items-center gap-1 rounded px-2 py-1 text-xs font-medium text-white/90 hover:bg-white/10 hover:text-white;
+  }
+
+  /* Maroon primary-nav links. */
+  .nav-link {
+    @apply inline-flex min-h-[40px] items-center gap-1.5 px-3 text-sm font-semibold text-white/90 hover:bg-gov-maroonDark hover:text-white;
+  }
 }

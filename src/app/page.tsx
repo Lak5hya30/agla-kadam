@@ -23,13 +23,13 @@ export default function HomePage() {
         <DemoQuickStart />
       </Suspense>
       <section className="space-y-4 pt-2">
-        <p className="text-sm font-semibold uppercase tracking-wide text-accent">
+        <p className="text-sm font-semibold uppercase tracking-wide text-gov-maroon">
           {t("app.name")} · {t("app.subtitle")}
         </p>
         <h1 className="text-3xl font-extrabold leading-tight text-ink sm:text-4xl">
           {t("home.hero1")}
           <br />
-          <span className="text-accent">{t("home.hero2")}</span>
+          <span className="text-gov-maroon">{t("home.hero2")}</span>
         </h1>
         <p className="text-lg text-ink-soft">{t("home.support")}</p>
 
@@ -60,9 +60,7 @@ export default function HomePage() {
 
       {/* The product insight, previewed on the homepage (§37) */}
       <section className="card space-y-4">
-        <h2 className="text-lg font-bold">
-          {t("analysis.title")}
-        </h2>
+        <h2 className="section-title">{t("analysis.title")}</h2>
         <div className="grid gap-3 sm:grid-cols-3">
           <InsightCard
             ask="Repair the road"

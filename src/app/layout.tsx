@@ -35,11 +35,16 @@ export default function RootLayout({
           <main id="main" className="container-page py-6 sm:py-10">
             {children}
           </main>
-          <footer className="container-page pb-10 pt-6 text-center text-xs text-ink-faint">
-            <p>
-              Agla Kadam · Hackathon prototype · Synthetic data only · Not a
-              Government of India service.
-            </p>
+          <footer className="mt-10 bg-gov-maroonDark text-white/90">
+            <div className="container-page space-y-1 py-6 text-center text-xs">
+              <p className="font-semibold text-white">
+                Agla Kadam — Understand the response. Know your next step.
+              </p>
+              <p>
+                Hackathon prototype · Synthetic data only · Independent demo, not
+                affiliated with CPGRAMS or the Government of India.
+              </p>
+            </div>
           </footer>
         </LanguageProvider>
       </body>

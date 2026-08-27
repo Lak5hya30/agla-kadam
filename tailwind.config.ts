@@ -30,6 +30,16 @@ const config: Config = {
           hover: "#254bc0",
           soft: "#e7edfd",
         },
+        // Civic-portal chrome — echoes the familiar Indian government-service
+        // palette (maroon nav, saffron emphasis) WITHOUT any emblem or branding.
+        gov: {
+          maroon: "#7a1f3d",
+          maroonDark: "#5c162d",
+          maroonSoft: "#f3e6ea",
+          saffron: "#d9760a",
+          saffronSoft: "#fbeacf",
+          cream: "#faf6ef",
+        },
         // Neutral, accessible status hues. Paired ALWAYS with icon + label.
         status: {
           ok: "#1f8a4c",

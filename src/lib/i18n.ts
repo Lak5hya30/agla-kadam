@@ -20,6 +20,17 @@ export const STRINGS: Dict = {
     en: "Understand the response. Know your next step.",
     hi: "जवाब समझें। अपना अगला कदम जानें।",
   },
+  "header.companion": {
+    en: "Citizen companion for CPGRAMS grievance responses",
+    hi: "CPGRAMS शिकायत के जवाब समझने में मदद करने वाला साथी",
+  },
+  "header.independent": {
+    en: "Independent demo · Not affiliated with CPGRAMS",
+    hi: "स्वतंत्र डेमो · CPGRAMS से संबद्ध नहीं",
+  },
+  "nav.home": { en: "Home", hi: "होम" },
+  "nav.demos": { en: "Demo cases", hi: "डेमो केस" },
+  "nav.whatsReal": { en: "What’s real?", hi: "क्या असली है?" },
   "app.disclaimer": {
     en: "Hackathon demo using synthetic grievance data. Not affiliated with CPGRAMS or the Government of India.",
     hi: "यह एक हैकाथॉन डेमो है जो काल्पनिक (सिंथेटिक) डेटा का उपयोग करता है। इसका CPGRAMS या भारत सरकार से कोई संबंध नहीं है।",

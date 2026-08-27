@@ -1,0 +1,68 @@
+{
+  "summary": {
+    "plain_language": "Your grievance is marked disposed, but the response does not fully confirm the outcome. The department says road repair work has been initiated, does not appear to mention the roadside barrier, and does not confirm that all work is complete.",
+    "plain_language_hi": "आपकी शिकायत 'निपटाई गई' दिख रही है, लेकिन जवाब में पूरा नतीजा साफ नहीं है। विभाग का कहना है कि सड़क मरम्मत का काम शुरू कर दिया गया है, लेकिन बैरियर बदलने का ज़िक्र नहीं है, और यह भी नहीं बताया गया कि सारा काम पूरा हो चुका है।",
+    "confidence": 0.86
+  },
+  "original_requests": [
+    {
+      "id": "r1",
+      "request": "Repair the damaged road surface.",
+      "source_span": "Repair of the damaged road surface."
+    },
+    {
+      "id": "r2",
+      "request": "Replace the damaged roadside barrier.",
+      "source_span": "Replacement of the damaged roadside barrier."
+    },
+    {
+      "id": "r3",
+      "request": "Confirm once both works are completed.",
+      "source_span": "Confirmation once both works are completed."
+    }
+  ],
+  "response_actions": [
+    {
+      "id": "a1",
+      "action": "An inspection was carried out by the concerned authority.",
+      "source_span": "Inspection has been carried out"
+    },
+    {
+      "id": "a2",
+      "action": "Road repair work has been initiated through the implementing agency.",
+      "source_span": "necessary road repair work has been initiated through the implementing agency"
+    },
+    {
+      "id": "a3",
+      "action": "The grievance is recorded as disposed.",
+      "source_span": "The grievance is disposed."
+    }
+  ],
+  "coverage": [
+    {
+      "request_id": "r1",
+      "status": "partial",
+      "reason": "The response says repair work has been initiated, but does not confirm that it has been completed.",
+      "response_evidence_ids": ["a2"],
+      "confidence": 0.88
+    },
+    {
+      "request_id": "r2",
+      "status": "not_addressed",
+      "reason": "I could not find anything in the department response about replacing the damaged roadside barrier.",
+      "response_evidence_ids": [],
+      "confidence": 0.85
+    },
+    {
+      "request_id": "r3",
+      "status": "unclear",
+      "reason": "The response does not provide a completion date or say that all requested work is complete.",
+      "response_evidence_ids": [],
+      "confidence": 0.62
+    }
+  ],
+  "policy_questions": {
+    "needs_appeal_eligibility_check": true
+  },
+  "unsupported_claims": []
+}

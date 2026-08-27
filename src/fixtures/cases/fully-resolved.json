@@ -1,0 +1,25 @@
+{
+  "id": "DEMO-002",
+  "label": "Service record correction",
+  "tagline": "A case that was genuinely resolved — no appeal needed.",
+  "citizen": {
+    "name": "Ravi Menon",
+    "context": "Pensioner, age 61"
+  },
+  "grievance": {
+    "title": "Incorrect date of birth in service record",
+    "text": "My service record shows an incorrect date of birth. I request that the date of birth be corrected to match my submitted documents, and that I be given a confirmation reference once the correction is made.",
+    "submittedAt": "2026-07-28"
+  },
+  "response": {
+    "text": "The service record has been examined and the date of birth has been corrected as per the documents on file. The correction is complete. Confirmation reference COR/2026/44821 has been issued. The grievance is disposed.",
+    "receivedAt": "2026-08-18"
+  },
+  "caseContext": {
+    "jurisdiction": "central",
+    "status": "disposed",
+    "disposedAt": "2026-08-18",
+    "feedback": "none"
+  },
+  "hasCachedAnalysis": true
+}

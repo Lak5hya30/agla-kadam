@@ -1,0 +1,56 @@
+{
+  "summary": {
+    "plain_language": "Your request appears to have been addressed. The department confirms the record was corrected and provides a completion reference.",
+    "plain_language_hi": "आपका अनुरोध पूरा किया गया लगता है। विभाग ने पुष्टि की है कि रिकॉर्ड ठीक कर दिया गया है और एक पुष्टि संदर्भ संख्या भी दी गई है।",
+    "confidence": 0.9
+  },
+  "original_requests": [
+    {
+      "id": "r1",
+      "request": "Correct the incorrect date of birth in the service record.",
+      "source_span": "the date of birth be corrected to match my submitted documents"
+    },
+    {
+      "id": "r2",
+      "request": "Provide a confirmation reference once the correction is made.",
+      "source_span": "given a confirmation reference once the correction is made"
+    }
+  ],
+  "response_actions": [
+    {
+      "id": "a1",
+      "action": "The date of birth has been corrected as per the documents on file.",
+      "source_span": "the date of birth has been corrected as per the documents on file"
+    },
+    {
+      "id": "a2",
+      "action": "The correction is stated to be complete.",
+      "source_span": "The correction is complete."
+    },
+    {
+      "id": "a3",
+      "action": "A confirmation reference was issued.",
+      "source_span": "Confirmation reference COR/2026/44821 has been issued."
+    }
+  ],
+  "coverage": [
+    {
+      "request_id": "r1",
+      "status": "addressed",
+      "reason": "The response states the date of birth has been corrected and that the correction is complete.",
+      "response_evidence_ids": ["a1", "a2"],
+      "confidence": 0.9
+    },
+    {
+      "request_id": "r2",
+      "status": "addressed",
+      "reason": "The response provides a specific confirmation reference number.",
+      "response_evidence_ids": ["a3"],
+      "confidence": 0.92
+    }
+  ],
+  "policy_questions": {
+    "needs_appeal_eligibility_check": false
+  },
+  "unsupported_claims": []
+}

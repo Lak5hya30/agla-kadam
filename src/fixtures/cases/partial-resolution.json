@@ -1,0 +1,25 @@
+{
+  "id": "DEMO-001",
+  "label": "Road repair & safety barrier",
+  "tagline": "Marked disposed, but not everything was confirmed.",
+  "citizen": {
+    "name": "Asha Sharma",
+    "context": "Daily commuter, age 43"
+  },
+  "grievance": {
+    "title": "Damaged road surface and broken roadside barrier near Sector 18",
+    "text": "The road near Sector 18 has several deep potholes and a damaged roadside barrier. This has created a safety risk for daily commuters. I request:\n1. Repair of the damaged road surface.\n2. Replacement of the damaged roadside barrier.\n3. Confirmation once both works are completed.",
+    "submittedAt": "2026-07-10"
+  },
+  "response": {
+    "text": "The matter was examined by the concerned authority. Inspection has been carried out and necessary road repair work has been initiated through the implementing agency. The grievance is disposed.",
+    "receivedAt": "2026-08-12"
+  },
+  "caseContext": {
+    "jurisdiction": "central",
+    "status": "disposed",
+    "disposedAt": "2026-08-12",
+    "feedback": "none"
+  },
+  "hasCachedAnalysis": true
+}

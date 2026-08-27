@@ -1,0 +1,51 @@
+{
+  "summary": {
+    "plain_language": "The response says the matter has been forwarded to the local municipal body, but does not confirm that the street lights have been repaired or that additional lighting was considered.",
+    "plain_language_hi": "जवाब में कहा गया है कि मामला स्थानीय नगर निकाय को भेज दिया गया है, लेकिन यह पुष्टि नहीं की गई कि स्ट्रीट लाइटें ठीक कर दी गई हैं या अतिरिक्त रोशनी पर विचार किया गया है।",
+    "confidence": 0.8
+  },
+  "original_requests": [
+    {
+      "id": "r1",
+      "request": "Repair the faulty street lights on the market road.",
+      "source_span": "the faulty street lights be repaired"
+    },
+    {
+      "id": "r2",
+      "request": "Consider additional lighting near the market crossing for safety.",
+      "source_span": "additional lighting be considered near the market crossing for safety"
+    }
+  ],
+  "response_actions": [
+    {
+      "id": "a1",
+      "action": "The matter has been forwarded to the local municipal body for action.",
+      "source_span": "The matter has been forwarded to the local municipal body for appropriate action"
+    },
+    {
+      "id": "a2",
+      "action": "The grievance is recorded as disposed at this level.",
+      "source_span": "The grievance is disposed at this level."
+    }
+  ],
+  "coverage": [
+    {
+      "request_id": "r1",
+      "status": "partial",
+      "reason": "The response says the matter was forwarded to the municipal body, but does not confirm the repair was carried out.",
+      "response_evidence_ids": ["a1"],
+      "confidence": 0.78
+    },
+    {
+      "request_id": "r2",
+      "status": "unclear",
+      "reason": "The response does not clearly say whether additional lighting was considered.",
+      "response_evidence_ids": [],
+      "confidence": 0.6
+    }
+  ],
+  "policy_questions": {
+    "needs_appeal_eligibility_check": false
+  },
+  "unsupported_claims": []
+}

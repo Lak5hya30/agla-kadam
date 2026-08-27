@@ -1,0 +1,25 @@
+{
+  "id": "DEMO-003",
+  "label": "Street lighting (State case)",
+  "tagline": "A State-level case that needs a different follow-up path.",
+  "citizen": {
+    "name": "Meena Patel",
+    "context": "Shopkeeper, age 38"
+  },
+  "grievance": {
+    "title": "Non-functional street lights on the market road",
+    "text": "The street lights on the main market road have not been working for several weeks. I request that the faulty street lights be repaired, and that additional lighting be considered near the market crossing for safety.",
+    "submittedAt": "2026-07-15"
+  },
+  "response": {
+    "text": "The matter has been forwarded to the local municipal body for appropriate action. The grievance is disposed at this level.",
+    "receivedAt": "2026-08-14"
+  },
+  "caseContext": {
+    "jurisdiction": "state",
+    "status": "disposed",
+    "disposedAt": "2026-08-14",
+    "feedback": "none"
+  },
+  "hasCachedAnalysis": true
+}

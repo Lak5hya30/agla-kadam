@@ -28,5 +28,5 @@ yarn-error.log*
 .vercel
 *.tsbuildinfo
 
-# Claude Code local config
-.claude/
+# local editor / tooling config
+/.editor-local/

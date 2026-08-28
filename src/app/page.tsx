@@ -54,18 +54,30 @@ export default function HomePage() {
             </p>
             <div className="flex flex-col gap-2 pt-1 sm:flex-row">
               <Link
-                href="/demo"
+                href="/case/DEMO-001"
                 className="btn inline-flex bg-gov-saffron text-white hover:brightness-95"
               >
-                {L("Check my resolution", "मेरा समाधान जाँचें")} →
+                {L("Check a demo grievance", "एक डेमो शिकायत जाँचें")} →
               </Link>
               <Link
-                href="/file"
+                href="/how"
                 className="btn inline-flex border border-white/40 bg-white/10 text-white hover:bg-white/20"
               >
-                {L("Lodge a grievance", "शिकायत दर्ज करें")}
+                {L("How it works", "यह कैसे काम करता है")}
               </Link>
             </div>
+            <p className="pt-1 text-xs text-white/70">
+              {L("No CPGRAMS login · No real citizen data · No government API", "कोई CPGRAMS लॉगिन नहीं · कोई असली नागरिक डेटा नहीं · कोई सरकारी API नहीं")}
+            </p>
+            <p className="text-xs">
+              <Link href="/demo" className="text-white/85 underline hover:text-white">
+                {L("Try another demo case", "दूसरा डेमो केस आज़माएँ")}
+              </Link>
+              <span className="text-white/40"> · </span>
+              <Link href="/file" className="text-white/85 underline hover:text-white">
+                {L("Try your own synthetic grievance text", "अपना काल्पनिक शिकायत पाठ आज़माएँ")}
+              </Link>
+            </p>
           </div>
 
           {/* Service category grid */}

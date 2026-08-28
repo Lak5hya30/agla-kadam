@@ -108,6 +108,27 @@ The OpenAI model performs **semantic** work only:
 Output is forced into a **strict Zod schema** and re-validated with
 cross-reference checks before the UI trusts it.
 
+## OpenAI integration (where it lives in the code)
+
+The OpenAI pipeline is fully implemented and inspectable. It runs live the moment
+`OPENAI_API_KEY` is set; with no key the app stays in **demo mode** — the
+synthetic cases show prepared analyses and user-typed text uses an offline
+keyword comparison — so the demo works anywhere without pretending a prepared
+result came from a live model.
+
+| File | Role |
+| --- | --- |
+| [`src/lib/prompt.ts`](src/lib/prompt.ts) | System prompt: the model does semantic comparison only, treats the documents as untrusted data (prompt-injection safe), and never decides policy or legality. |
+| [`src/lib/schema.ts`](src/lib/schema.ts) | Zod structured-output schema + cross-reference validation the model output must satisfy. |
+| [`src/lib/analyze.ts`](src/lib/analyze.ts) | Server-only call (`openai` SDK, structured outputs). Chooses **live → cached fixture → offline** and labels the source honestly. Key never reaches the browser. |
+| [`src/lib/grounding.ts`](src/lib/grounding.ts) | Verifies every quote the model cites exists verbatim in the source; drops hallucinated evidence and degrades unsupported findings to *Unclear*. |
+| [`src/app/api/analyze-resolution/route.ts`](src/app/api/analyze-resolution/route.ts) | The `POST` endpoint the UI calls. |
+| [`src/app/api/status/route.ts`](src/app/api/status/route.ts) | Reports whether live AI is configured (boolean only); drives the honest badge on `/how`. |
+
+**To see it fire live:** set `OPENAI_API_KEY` (and optionally `OPENAI_MODEL`) in
+`.env.local` locally, or in the Vercel project's environment variables, then
+redeploy. The analysis badge flips from *Demo analysis* to 🟢 *Live AI analysis*.
+
 ## Deterministic safeguards (what the model never decides)
 
 A plain, unit-tested **policy engine** — not the LLM — decides workflow:

@@ -18,10 +18,11 @@ export function AuthControl() {
     return (
       <Link
         href="/login"
-        className="inline-flex min-h-[36px] items-center gap-1.5 rounded-md bg-gov-saffron px-3 text-sm font-bold text-white hover:brightness-95"
+        aria-label={L("Sign in", "साइन इन करें")}
+        className="inline-flex min-h-[40px] min-w-10 items-center justify-center gap-1.5 rounded-md bg-gov-saffron px-2.5 text-sm font-bold text-white hover:brightness-95 sm:px-3"
       >
         <span aria-hidden="true">➜</span>
-        {L("Sign In", "साइन इन")}
+        <span className="hidden sm:inline">{L("Sign In", "साइन इन")}</span>
       </Link>
     );
   }
@@ -33,7 +34,7 @@ export function AuthControl() {
         type="button"
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
-        className="inline-flex min-h-[36px] items-center gap-2 rounded-md bg-white/15 px-2.5 text-sm font-semibold text-white hover:bg-white/25"
+        className="inline-flex min-h-[40px] items-center gap-2 rounded-md border border-black/10 bg-surface px-2 text-sm font-semibold text-ink hover:bg-surface-sunken sm:border-0 sm:bg-white/15 sm:px-2.5 sm:text-white sm:hover:bg-white/25"
       >
         <span
           aria-hidden="true"
@@ -41,7 +42,7 @@ export function AuthControl() {
         >
           {initial}
         </span>
-        <span className="max-w-[8rem] truncate">{user.name}</span>
+        <span className="hidden max-w-[8rem] truncate sm:inline">{user.name}</span>
         <span aria-hidden="true" className="text-xs">▾</span>
       </button>
       {open && (

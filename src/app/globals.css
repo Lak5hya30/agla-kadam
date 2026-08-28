@@ -16,6 +16,13 @@ body {
   line-height: 1.6;
 }
 
+/* Avoid accidental page-wide sideways scrolling on narrow phones. */
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
 /* Visible, high-contrast focus indicator for keyboard users (§47) */
 :where(a, button, input, textarea, select, [tabindex]):focus-visible {
   outline: 3px solid #2f5fe0;

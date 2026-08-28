@@ -53,7 +53,7 @@ export async function analyzeResolution(
       source: "cached",
       analysis: cachedFallback(),
       fallbackReason:
-        "Live analysis is not configured for this environment. Showing the previously generated analysis for this synthetic demo case.",
+        "Demo mode: showing the prepared analysis for this synthetic case.",
     };
   }
 
@@ -66,7 +66,7 @@ export async function analyzeResolution(
       source: "cached",
       analysis: cachedFallback(),
       fallbackReason:
-        "Live analysis is temporarily unavailable. Showing the previously generated analysis for this synthetic demo case.",
+        "Showing the prepared analysis for this synthetic demo case.",
     };
   }
 }
@@ -89,7 +89,7 @@ export async function analyzeAdHoc(
         source: "offline",
         analysis: heuristicAnalyze(grievance, response),
         fallbackReason:
-          "Live AI analysis was unavailable, so this uses a basic offline comparison. Add an OpenAI key for full AI analysis.",
+          "Demo mode: this uses an offline keyword comparison of your text (not a live model).",
       };
     }
   }
@@ -97,7 +97,7 @@ export async function analyzeAdHoc(
     source: "offline",
     analysis: heuristicAnalyze(grievance, response),
     fallbackReason:
-      "No OpenAI key is configured, so this uses a basic offline keyword comparison. It is not AI analysis. Add an OpenAI key for full AI analysis.",
+      "Demo mode: this uses an offline keyword comparison of your text (not a live model).",
   };
 }
 

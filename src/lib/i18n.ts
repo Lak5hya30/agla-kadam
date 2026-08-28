@@ -130,7 +130,7 @@ export const STRINGS: Dict = {
   "common.mock": { en: "Mock", hi: "मॉक" },
   "common.real": { en: "Real", hi: "असली" },
   "common.live": { en: "Live AI analysis", hi: "लाइव AI विश्लेषण" },
-  "common.cached": { en: "Cached demo analysis", hi: "कैश किया गया डेमो विश्लेषण" },
+  "common.cached": { en: "Demo analysis", hi: "डेमो विश्लेषण" },
   "common.privacyWarn": {
     en: "Demo only. Do not enter real personal or government account information.",
     hi: "केवल डेमो। असली निजी या सरकारी खाता जानकारी न भरें।",

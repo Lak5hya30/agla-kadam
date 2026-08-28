@@ -26,12 +26,12 @@ function LiveAiStatus() {
           : "border-gov-saffron/30 bg-gov-saffronSoft text-gov-saffron"
       }`}
     >
-      <span aria-hidden="true">{on ? "🟢" : "🧮"}</span>
+      <span aria-hidden="true">{on ? "🟢" : "🧪"}</span>
       <p>
         <strong>
           {on
             ? L("Live OpenAI analysis: enabled", "लाइव OpenAI विश्लेषण: सक्षम")
-            : L("Live OpenAI analysis: not enabled on this deployment", "लाइव OpenAI विश्लेषण: इस परिनियोजन पर सक्षम नहीं")}
+            : L("Demo mode — no live API key needed", "डेमो मोड — किसी लाइव API कुंजी की ज़रूरत नहीं")}
         </strong>
         {" — "}
         {on
@@ -40,8 +40,8 @@ function LiveAiStatus() {
               `इस परिनियोजन पर विश्लेषण ${status.model} मॉडल से होते हैं।`
             )
           : L(
-              "Demo cases show a cached analysis; your own text uses an offline keyword comparison. Add an OpenAI key to enable the live model.",
-              "डेमो केस कैश किया गया विश्लेषण दिखाते हैं; आपका अपना पाठ ऑफ़लाइन तुलना का उपयोग करता है। लाइव मॉडल के लिए OpenAI कुंजी जोड़ें।"
+              "The synthetic cases show prepared analyses and your own text uses an offline comparison, so the demo works anywhere. The same pipeline calls OpenAI live when a key is configured.",
+              "काल्पनिक केस तैयार विश्लेषण दिखाते हैं और आपका अपना पाठ ऑफ़लाइन तुलना का उपयोग करता है, इसलिए यह डेमो कहीं भी चलता है। कुंजी होने पर वही पाइपलाइन OpenAI को लाइव कॉल करती है।"
             )}
       </p>
     </div>

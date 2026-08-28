@@ -10,6 +10,38 @@
 
 ---
 
+## Summary
+
+CPGRAMS already lets citizens file and track grievances. The gap opens *after*
+the reply arrives: a grievance is marked **DISPOSED**, yet the citizen often
+can't tell which of their requests were actually addressed, what remains
+unresolved, or what to do next. Agla Kadam is the missing interpretation layer
+between a government response and the citizen's next decision.
+
+Using synthetic CPGRAMS-style cases, it decomposes the grievance into individual
+requests and compares each against the department's response, classifying it as
+**Addressed, Partly addressed, Not addressed, or Unclear**. Every finding links
+back to the exact source sentence through **"Show me where."** A crucial
+separation keeps it trustworthy: an OpenAI model does only the semantic
+comparison, while a deterministic, unit-tested rules engine owns every workflow
+decision — jurisdiction, the 30-day appeal window, and whether an appeal is even
+available. State cases correctly withhold the Central appeal route; genuinely
+resolved cases get "no action needed," so it never pushes unnecessary appeals.
+
+Citizens can also file their own grievance, then review a source-backed appeal
+draft and confirm it before a clearly-mocked submission issues a demo reference
+and tracking timeline.
+
+It runs entirely in demo mode — no live key, login, government API, Aadhaar, OTP,
+or real data — with a persistent "not an official site" disclaimer. The prototype
+is bilingual (English/Hindi) end-to-end, mobile-first, low-bandwidth, accessible,
+and read-aloud enabled, with 64 automated tests.
+
+**Understand → Compare → Decide → Act → Confirm → Track** — the step CPGRAMS
+leaves out.
+
+---
+
 ## Problem
 
 CPGRAMS (the Centralised Public Grievance Redress and Monitoring System) already

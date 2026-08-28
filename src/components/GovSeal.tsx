@@ -4,6 +4,21 @@
  * masthead position so the layout matches, without reproducing protected
  * government insignia.
  */
+const SPOKES = [
+  [57, 32, 61, 32],
+  [53.651, 44.5, 57.115, 46.5],
+  [44.5, 53.651, 46.5, 57.115],
+  [32, 57, 32, 61],
+  [19.5, 53.651, 17.5, 57.115],
+  [10.349, 44.5, 6.885, 46.5],
+  [7, 32, 3, 32],
+  [10.349, 19.5, 6.885, 17.5],
+  [19.5, 10.349, 17.5, 6.885],
+  [32, 7, 32, 3],
+  [44.5, 10.349, 46.5, 6.885],
+  [53.651, 19.5, 57.115, 17.5],
+] as const;
+
 export function GovSeal({ className = "" }: { className?: string }) {
   return (
     <svg
@@ -25,14 +40,9 @@ export function GovSeal({ className = "" }: { className?: string }) {
       </g>
       {/* subtle spokes ring */}
       <g stroke="#d9760a" strokeWidth="1">
-        {Array.from({ length: 12 }).map((_, i) => {
-          const a = (i * Math.PI) / 6;
-          const x1 = 32 + Math.cos(a) * 25;
-          const y1 = 32 + Math.sin(a) * 25;
-          const x2 = 32 + Math.cos(a) * 29;
-          const y2 = 32 + Math.sin(a) * 29;
-          return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} />;
-        })}
+        {SPOKES.map(([x1, y1, x2, y2], i) => (
+          <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} />
+        ))}
       </g>
     </svg>
   );

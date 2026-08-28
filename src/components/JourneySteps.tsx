@@ -2,6 +2,7 @@
 
 /** Compact orientation stepper across the citizen journey. */
 import { usePathname } from "next/navigation";
+import { useEffect, useRef } from "react";
 import { useLang } from "./LanguageProvider";
 
 const STEPS = [
@@ -17,9 +18,21 @@ export function JourneySteps() {
   const pathname = usePathname();
   const { lang } = useLang();
   const activeIdx = STEPS.findIndex((s) => s.match.test(pathname));
+  const navRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const nav = navRef.current;
+    const current = nav?.querySelector<HTMLElement>('[aria-current="step"]');
+    if (!nav || !current) return;
+    nav.scrollLeft = current.offsetLeft - (nav.clientWidth - current.clientWidth) / 2;
+  }, [activeIdx, lang]);
 
   return (
-    <nav aria-label="Progress" className="overflow-x-auto">
+    <nav
+      ref={navRef}
+      aria-label={lang === "hi" ? "प्रक्रिया में आपकी स्थिति" : "Journey progress"}
+      className="overflow-x-auto overscroll-x-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+    >
       <ol className="flex min-w-max items-center gap-1 text-xs">
         {STEPS.map((step, i) => {
           const state =

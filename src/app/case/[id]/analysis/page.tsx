@@ -42,12 +42,12 @@ export default function AnalysisPage({ params }: { params: { id: string } }) {
           fallbackReason: data.fallbackReason ?? undefined,
         });
       } catch {
-        setError("We could not run the analysis just now. Please try again.");
+        setError(t("analysis.error"));
       } finally {
         setLoading(false);
       }
     },
-    [update]
+    [update, t]
   );
 
   useEffect(() => {
@@ -83,7 +83,7 @@ export default function AnalysisPage({ params }: { params: { id: string } }) {
           <div className="card space-y-3">
             <p className="text-status-missing">{error}</p>
             <button className="btn-primary" onClick={() => runAnalysis(c)}>
-              Try again
+              {t("analysis.tryAgain")}
             </button>
           </div>
         ) : (
@@ -126,9 +126,7 @@ export default function AnalysisPage({ params }: { params: { id: string } }) {
       >
         <div className="flex items-start justify-between gap-3">
           <h2 className="text-lg font-bold text-ink">
-            {allAddressed
-              ? "Your request appears to have been addressed."
-              : "Marked disposed, but the response does not fully confirm the outcome."}
+            {allAddressed ? t("analysis.headAddressed") : t("analysis.headPartial")}
           </h2>
           <ReadAloud text={summaryText} />
         </div>
@@ -169,7 +167,7 @@ function SourceBadge({ source }: { source?: AnalysisSource }) {
   const map = {
     live: { cls: "bg-status-okSoft text-status-ok", icon: "🟢", label: t("common.live") },
     cached: { cls: "bg-surface-sunken text-ink-soft", icon: "💾", label: t("common.cached") },
-    offline: { cls: "bg-gov-saffronSoft text-gov-saffron", icon: "🧮", label: "Offline comparison" },
+    offline: { cls: "bg-gov-saffronSoft text-gov-saffron", icon: "🧮", label: t("common.offline") },
   } as const;
   const m = map[source];
   return (

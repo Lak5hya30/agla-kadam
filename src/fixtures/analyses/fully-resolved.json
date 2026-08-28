@@ -8,11 +8,13 @@
     {
       "id": "r1",
       "request": "Correct the incorrect date of birth in the service record.",
+      "request_hi": "सेवा रिकॉर्ड में गलत जन्म तिथि को सही करना।",
       "source_span": "the date of birth be corrected to match my submitted documents"
     },
     {
       "id": "r2",
       "request": "Provide a confirmation reference once the correction is made.",
+      "request_hi": "सुधार होने पर एक पुष्टि संदर्भ संख्या देना।",
       "source_span": "given a confirmation reference once the correction is made"
     }
   ],
@@ -20,16 +22,19 @@
     {
       "id": "a1",
       "action": "The date of birth has been corrected as per the documents on file.",
+      "action_hi": "दस्तावेज़ों के अनुसार जन्म तिथि सही कर दी गई है।",
       "source_span": "the date of birth has been corrected as per the documents on file"
     },
     {
       "id": "a2",
       "action": "The correction is stated to be complete.",
+      "action_hi": "सुधार पूरा होने की पुष्टि की गई है।",
       "source_span": "The correction is complete."
     },
     {
       "id": "a3",
       "action": "A confirmation reference was issued.",
+      "action_hi": "एक पुष्टि संदर्भ संख्या जारी की गई है।",
       "source_span": "Confirmation reference COR/2026/44821 has been issued."
     }
   ],
@@ -38,6 +43,7 @@
       "request_id": "r1",
       "status": "addressed",
       "reason": "The response states the date of birth has been corrected and that the correction is complete.",
+      "reason_hi": "जवाब में कहा गया है कि जन्म तिथि सही कर दी गई है और सुधार पूरा हो गया है।",
       "response_evidence_ids": ["a1", "a2"],
       "confidence": 0.9
     },
@@ -45,6 +51,7 @@
       "request_id": "r2",
       "status": "addressed",
       "reason": "The response provides a specific confirmation reference number.",
+      "reason_hi": "जवाब में एक विशिष्ट पुष्टि संदर्भ संख्या दी गई है।",
       "response_evidence_ids": ["a3"],
       "confidence": 0.92
     }

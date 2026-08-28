@@ -20,6 +20,8 @@ export const OriginalRequestSchema = z.object({
   id: z.string().min(1),
   /** The citizen's individual request, in plain language. */
   request: z.string().min(1),
+  /** Optional simple-Hindi rendering of the request. */
+  request_hi: z.string().optional(),
   /** Verbatim span from the ORIGINAL GRIEVANCE that this request came from. */
   source_span: z.string().min(1),
 });
@@ -29,6 +31,8 @@ export const ResponseActionSchema = z.object({
   id: z.string().min(1),
   /** An action or statement the department made, in plain language. */
   action: z.string().min(1),
+  /** Optional simple-Hindi rendering of the action. */
+  action_hi: z.string().optional(),
   /** Verbatim span from the DEPARTMENT RESPONSE. */
   source_span: z.string().min(1),
 });
@@ -39,6 +43,8 @@ export const CoverageItemSchema = z.object({
   status: CoverageStatusSchema,
   /** Citizen-friendly reason. For not_addressed, states we couldn't find a match. */
   reason: z.string().min(1),
+  /** Optional simple-Hindi rendering of the reason. */
+  reason_hi: z.string().optional(),
   /** IDs of response_actions that support this assessment (may be empty for not_addressed). */
   response_evidence_ids: z.array(z.string()),
   confidence: z.number().min(0).max(1),

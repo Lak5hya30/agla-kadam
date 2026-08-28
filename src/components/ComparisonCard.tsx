@@ -22,18 +22,21 @@ export function ComparisonCard({
   responseText: string;
   grievanceText: string;
 }) {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const [show, setShow] = useState<"none" | "response" | "request">("none");
 
   const hasResponseEvidence = actions.length > 0;
   const responseSpans = actions.map((a) => a.source_span);
+  const hi = lang === "hi";
+  const requestText = hi && request.request_hi ? request.request_hi : request.request;
+  const reasonText = hi && coverage.reason_hi ? coverage.reason_hi : coverage.reason;
 
   return (
     <article className="card space-y-3">
       <div className="flex items-start justify-between gap-3">
         <h3 className="text-base font-bold text-ink">
           <span className="text-ink-faint">{index}. </span>
-          {request.request}
+          {requestText}
         </h3>
         <StatusBadge status={coverage.displayStatus} className="shrink-0" />
       </div>
@@ -43,7 +46,7 @@ export function ComparisonCard({
           <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-ink-faint">
             {t("analysis.youAsked")}
           </p>
-          <p className="text-sm text-ink">{request.request}</p>
+          <p className="text-sm text-ink">{requestText}</p>
         </div>
         <div className="rounded-xl bg-surface-soft p-3">
           <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-ink-faint">
@@ -52,7 +55,7 @@ export function ComparisonCard({
           {hasResponseEvidence ? (
             <ul className="space-y-1 text-sm text-ink">
               {actions.map((a) => (
-                <li key={a.id}>• {a.action}</li>
+                <li key={a.id}>• {hi && a.action_hi ? a.action_hi : a.action}</li>
               ))}
             </ul>
           ) : (
@@ -67,7 +70,7 @@ export function ComparisonCard({
         <p className="text-xs font-semibold uppercase tracking-wide text-ink-faint">
           {t("analysis.why")}
         </p>
-        <p className="text-sm text-ink-soft">{coverage.reason}</p>
+        <p className="text-sm text-ink-soft">{reasonText}</p>
         {coverage.caution && (
           <p className="mt-1 text-xs font-medium text-status-partial">
             ⚠ {t("status.caution")}

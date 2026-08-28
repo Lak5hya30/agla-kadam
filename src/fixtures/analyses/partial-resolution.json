@@ -8,16 +8,19 @@
     {
       "id": "r1",
       "request": "Repair the damaged road surface.",
+      "request_hi": "टूटी सड़क की सतह की मरम्मत।",
       "source_span": "Repair of the damaged road surface."
     },
     {
       "id": "r2",
       "request": "Replace the damaged roadside barrier.",
+      "request_hi": "टूटे सुरक्षा बैरियर को बदलना।",
       "source_span": "Replacement of the damaged roadside barrier."
     },
     {
       "id": "r3",
       "request": "Confirm once both works are completed.",
+      "request_hi": "दोनों काम पूरे होने पर पुष्टि।",
       "source_span": "Confirmation once both works are completed."
     }
   ],
@@ -25,16 +28,19 @@
     {
       "id": "a1",
       "action": "An inspection was carried out by the concerned authority.",
+      "action_hi": "संबंधित प्राधिकरण द्वारा निरीक्षण किया गया।",
       "source_span": "Inspection has been carried out"
     },
     {
       "id": "a2",
       "action": "Road repair work has been initiated through the implementing agency.",
+      "action_hi": "कार्यान्वयन एजेंसी के माध्यम से सड़क मरम्मत का काम शुरू कर दिया गया है।",
       "source_span": "necessary road repair work has been initiated through the implementing agency"
     },
     {
       "id": "a3",
       "action": "The grievance is recorded as disposed.",
+      "action_hi": "शिकायत को निपटाया हुआ दर्ज किया गया है।",
       "source_span": "The grievance is disposed."
     }
   ],
@@ -43,6 +49,7 @@
       "request_id": "r1",
       "status": "partial",
       "reason": "The response says repair work has been initiated, but does not confirm that it has been completed.",
+      "reason_hi": "जवाब में कहा गया है कि मरम्मत का काम शुरू कर दिया गया है, लेकिन यह पुष्टि नहीं की गई कि यह पूरा हो चुका है।",
       "response_evidence_ids": ["a2"],
       "confidence": 0.88
     },
@@ -50,6 +57,7 @@
       "request_id": "r2",
       "status": "not_addressed",
       "reason": "I could not find anything in the department response about replacing the damaged roadside barrier.",
+      "reason_hi": "विभाग के जवाब में टूटे सुरक्षा बैरियर को बदलने के बारे में मुझे कुछ नहीं मिला।",
       "response_evidence_ids": [],
       "confidence": 0.85
     },
@@ -57,6 +65,7 @@
       "request_id": "r3",
       "status": "unclear",
       "reason": "The response does not provide a completion date or say that all requested work is complete.",
+      "reason_hi": "जवाब में पूरा होने की तारीख नहीं दी गई और यह नहीं कहा गया कि सारा माँगा गया काम पूरा हो चुका है।",
       "response_evidence_ids": [],
       "confidence": 0.62
     }

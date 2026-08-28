@@ -8,11 +8,13 @@
     {
       "id": "r1",
       "request": "Repair the faulty street lights on the market road.",
+      "request_hi": "बाज़ार सड़क की खराब स्ट्रीट लाइटों की मरम्मत।",
       "source_span": "the faulty street lights be repaired"
     },
     {
       "id": "r2",
       "request": "Consider additional lighting near the market crossing for safety.",
+      "request_hi": "सुरक्षा के लिए बाज़ार चौराहे के पास अतिरिक्त रोशनी पर विचार।",
       "source_span": "additional lighting be considered near the market crossing for safety"
     }
   ],
@@ -20,11 +22,13 @@
     {
       "id": "a1",
       "action": "The matter has been forwarded to the local municipal body for action.",
+      "action_hi": "मामला कार्रवाई के लिए स्थानीय नगर निकाय को भेज दिया गया है।",
       "source_span": "The matter has been forwarded to the local municipal body for appropriate action"
     },
     {
       "id": "a2",
       "action": "The grievance is recorded as disposed at this level.",
+      "action_hi": "इस स्तर पर शिकायत को निपटाया हुआ दर्ज किया गया है।",
       "source_span": "The grievance is disposed at this level."
     }
   ],
@@ -33,6 +37,7 @@
       "request_id": "r1",
       "status": "partial",
       "reason": "The response says the matter was forwarded to the municipal body, but does not confirm the repair was carried out.",
+      "reason_hi": "जवाब में कहा गया है कि मामला नगर निकाय को भेज दिया गया, लेकिन यह पुष्टि नहीं की गई कि मरम्मत की गई।",
       "response_evidence_ids": ["a1"],
       "confidence": 0.78
     },
@@ -40,6 +45,7 @@
       "request_id": "r2",
       "status": "unclear",
       "reason": "The response does not clearly say whether additional lighting was considered.",
+      "reason_hi": "जवाब में स्पष्ट रूप से नहीं कहा गया कि अतिरिक्त रोशनी पर विचार किया गया या नहीं।",
       "response_evidence_ids": [],
       "confidence": 0.6
     }

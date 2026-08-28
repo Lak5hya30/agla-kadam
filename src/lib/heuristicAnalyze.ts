@@ -156,10 +156,19 @@ export function heuristicAnalyze(
           : status === "not_addressed"
             ? "I could not find a matching statement about this request in the response."
             : "It is unclear from the response whether this request was addressed.";
+    const reason_hi =
+      status === "addressed"
+        ? "जवाब इस माँग के पूरा होने की पुष्टि करता प्रतीत होता है।"
+        : status === "partial"
+          ? "जवाब में संबंधित कार्रवाई का ज़िक्र है, लेकिन पूरा होने की स्पष्ट पुष्टि नहीं है।"
+          : status === "not_addressed"
+            ? "जवाब में इस माँग से मेल खाता कोई कथन मुझे नहीं मिला।"
+            : "जवाब से यह स्पष्ट नहीं है कि इस माँग को पूरा किया गया या नहीं।";
     return {
       request_id: req.id,
       status,
       reason,
+      reason_hi,
       response_evidence_ids: evidenceIdx.map((i) => `a${i + 1}`),
       confidence,
     };

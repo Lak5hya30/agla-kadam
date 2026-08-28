@@ -15,7 +15,7 @@ export default function SuccessPage({ params }: { params: { id: string } }) {
   if (!state.appealId) {
     return (
       <div className="card space-y-3">
-        <p className="text-ink-soft">No demo appeal has been submitted yet.</p>
+        <p className="text-ink-soft">{t("guard.noAppeal")}</p>
         <Link href={`/case/${c.id}/appeal`} className="btn-primary w-fit">
           {t("appeal.title")} →
         </Link>

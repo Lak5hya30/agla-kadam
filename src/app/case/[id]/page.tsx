@@ -22,7 +22,9 @@ export default function CasePage({ params }: { params: { id: string } }) {
         <div>
           <p className="text-xs font-semibold uppercase tracking-wide text-ink-faint">
             {c.id} · {c.citizen.name}
-            {c.citizen.context ? ` · ${c.citizen.context}` : ""}
+            {c.citizen.context
+              ? ` · ${lang === "hi" && c.citizen.context_hi ? c.citizen.context_hi : c.citizen.context}`
+              : ""}
           </p>
           <h1 className="text-2xl font-extrabold text-ink">{title}</h1>
         </div>

@@ -22,12 +22,17 @@ export interface DemoCase {
   id: string;
   /** Short label for the case-selector card. */
   label: string;
+  /** Natural Hindi label for the case-selector card. */
+  label_hi?: string;
   /** One-line description of what this case demonstrates. */
   tagline: string;
+  /** Natural Hindi description of what this case demonstrates. */
+  tagline_hi?: string;
   citizen: {
     name: string;
     /** Purely narrative context; never a real identifier. */
     context?: string;
+    context_hi?: string;
   };
   grievance: {
     title: string;

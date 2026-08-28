@@ -1,10 +1,13 @@
 {
   "id": "DEMO-001",
   "label": "Road repair & safety barrier",
+  "label_hi": "सड़क की मरम्मत और सुरक्षा बैरियर",
   "tagline": "Marked disposed, but not everything was confirmed.",
+  "tagline_hi": "शिकायत निपटाई हुई दिखाई गई, पर सभी काम पूरे होने की पुष्टि नहीं मिली।",
   "citizen": {
     "name": "Asha Sharma",
-    "context": "Daily commuter, age 43"
+    "context": "Daily commuter, age 43",
+    "context_hi": "रोज़ाना सफ़र करने वाली, उम्र 43 वर्ष"
   },
   "grievance": {
     "title": "Damaged road surface and broken roadside barrier near Sector 18",

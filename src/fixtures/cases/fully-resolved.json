@@ -1,10 +1,13 @@
 {
   "id": "DEMO-002",
   "label": "Service record correction",
+  "label_hi": "सेवा रिकॉर्ड में सुधार",
   "tagline": "A case that was genuinely resolved — no appeal needed.",
+  "tagline_hi": "समस्या सचमुच हल हो गई—अपील की ज़रूरत नहीं।",
   "citizen": {
     "name": "Ravi Menon",
-    "context": "Pensioner, age 61"
+    "context": "Pensioner, age 61",
+    "context_hi": "पेंशनभोगी, उम्र 61 वर्ष"
   },
   "grievance": {
     "title": "Incorrect date of birth in service record",

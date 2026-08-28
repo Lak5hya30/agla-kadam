@@ -7,15 +7,15 @@ import { listCases } from "@/lib/caseData";
 
 const CASE_META: Record<
   string,
-  { badge: string; badgeClass: string }
+  { badge: string; badgeHi: string; badgeClass: string }
 > = {
-  "DEMO-001": { badge: "Partly addressed", badgeClass: "bg-status-partialSoft text-status-partial" },
-  "DEMO-002": { badge: "Fully resolved", badgeClass: "bg-status-okSoft text-status-ok" },
-  "DEMO-003": { badge: "State jurisdiction", badgeClass: "bg-status-unclearSoft text-status-unclear" },
+  "DEMO-001": { badge: "Partly addressed", badgeHi: "कुछ काम बाकी", badgeClass: "bg-status-partialSoft text-status-partial" },
+  "DEMO-002": { badge: "Fully resolved", badgeHi: "पूरी तरह हल", badgeClass: "bg-status-okSoft text-status-ok" },
+  "DEMO-003": { badge: "State jurisdiction", badgeHi: "राज्य का मामला", badgeClass: "bg-status-unclearSoft text-status-unclear" },
 };
 
 export default function DemoPage() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const cases = listCases();
 
   return (
@@ -34,24 +34,28 @@ export default function DemoPage() {
               href={`/case/${c.id}`}
               className="card block transition-shadow hover:shadow-lg focus-visible:shadow-lg"
             >
-              <div className="flex items-start justify-between gap-3">
-                <div>
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                <div className="min-w-0">
                   <p className="text-xs font-semibold uppercase tracking-wide text-ink-faint">
                     {c.id} · {c.citizen.name}
                   </p>
-                  <h2 className="mt-0.5 text-lg font-bold text-ink">{c.label}</h2>
-                  <p className="mt-1 text-sm text-ink-soft">{c.tagline}</p>
+                  <h2 className="mt-0.5 text-lg font-bold text-ink">
+                    {lang === "hi" && c.label_hi ? c.label_hi : c.label}
+                  </h2>
+                  <p className="mt-1 text-sm text-ink-soft">
+                    {lang === "hi" && c.tagline_hi ? c.tagline_hi : c.tagline}
+                  </p>
                 </div>
                 {meta && (
                   <span
                     className={`pill shrink-0 ${meta.badgeClass}`}
-                    aria-label={`Scenario: ${meta.badge}`}
+                    aria-label={lang === "hi" ? `परिदृश्य: ${meta.badgeHi}` : `Scenario: ${meta.badge}`}
                   >
-                    {meta.badge}
+                    {lang === "hi" ? meta.badgeHi : meta.badge}
                   </span>
                 )}
               </div>
-              <div className="mt-3 flex items-center gap-2 text-sm">
+              <div className="mt-3 flex flex-wrap items-center gap-2 text-sm">
                 <span className="pill bg-surface-sunken text-ink-soft">
                   <span aria-hidden="true">📄</span> {t("case.status")}:{" "}
                   {t("case.disposed")}

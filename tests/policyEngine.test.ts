@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { decideNextAction, isAppealAvailable } from "@/lib/policyEngine";
+import { decideNextAction, isAppealAvailable, localizePolicyDecision } from "@/lib/policyEngine";
 import type { CaseContext } from "@/lib/types";
 
 const NOW = new Date("2026-08-27T00:00:00Z");
@@ -97,5 +97,13 @@ describe("policy engine — deterministic next action", () => {
       expect(d.headline.length).toBeGreaterThan(0);
       expect(d.checks.length).toBeGreaterThan(0);
     }
+  });
+
+  it("localizes citizen-facing guidance without changing the decision", () => {
+    const decision = decideNextAction(ctx({ feedback: "none" }), { now: NOW });
+    const localized = localizePolicyDecision(decision, "hi");
+    expect(localized.action).toBe(decision.action);
+    expect(localized.headline).toContain("प्रतिक्रिया");
+    expect(localized.checks.every((check) => !check.label.includes("Grievance"))).toBe(true);
   });
 });

@@ -40,16 +40,16 @@ export default function HomePage() {
                 : L("Grievance Resolution Companion", "शिकायत समाधान साथी")}
             </p>
             <h1 className="text-2xl font-extrabold leading-tight sm:text-3xl">
-              {L("Your grievance says", "आपकी शिकायत कहती है")} “{L("Disposed", "निपटाई गई")}.”
+              {L("Your grievance says", "आपकी शिकायत का दर्जा है")} “{L("Disposed", "निस्तारित")}.”
               <br />
               <span className="text-gov-saffron">
-                {L("But was it actually resolved?", "पर क्या यह सच में हल हुई?")}
+                {L("But was it actually resolved?", "लेकिन क्या समस्या सच में हल हुई?")}
               </span>
             </h1>
             <p className="text-sm text-white/90">
               {L(
                 "Agla Kadam compares your request with the department’s response and explains what you can safely do next.",
-                "अगला कदम आपकी माँग की तुलना विभाग के जवाब से करता है और बताता है कि आप आगे क्या कर सकते हैं।"
+                "अगला कदम आपकी माँग और विभाग के जवाब को आमने-सामने रखकर बताता है कि क्या बाकी है और आप आगे क्या कर सकते हैं।"
               )}
             </p>
             <div className="flex flex-col gap-2 pt-1 sm:flex-row">
@@ -75,7 +75,7 @@ export default function HomePage() {
               </Link>
               <span className="text-white/40"> · </span>
               <Link href="/file" className="text-white/85 underline hover:text-white">
-                {L("Try your own synthetic grievance text", "अपना काल्पनिक शिकायत पाठ आज़माएँ")}
+                {L("Try your own synthetic grievance text", "काल्पनिक शिकायत लिखकर आज़माएँ")}
               </Link>
             </p>
           </div>
@@ -108,13 +108,13 @@ export default function HomePage() {
           <p className="mt-3 text-sm text-ink-soft">
             {L(
               "Pick a synthetic disposed grievance. We compare each request with the department’s reply, show the evidence, and guide your next step — feedback or appeal.",
-              "एक काल्पनिक निपटाई गई शिकायत चुनें। हम हर माँग की तुलना विभाग के जवाब से करते हैं, प्रमाण दिखाते हैं, और आपका अगला कदम बताते हैं।"
+              "एक काल्पनिक निस्तारित शिकायत चुनें। हम हर माँग को विभाग के जवाब से मिलाकर दिखाते हैं कि क्या पूरा हुआ, क्या बाकी है और अब क्या किया जा सकता है।"
             )}
           </p>
           <div className="mt-4 grid gap-3 sm:grid-cols-3">
-            <InsightCard ask={L("Repair the road", "सड़क की मरम्मत")} said="“repair work has been initiated”" verdict={t("status.partial")} icon="◐" tone="text-status-partial" />
-            <InsightCard ask={L("Replace safety barrier", "बैरियर बदलें")} said={t("analysis.noMatch")} verdict={t("status.not_addressed")} icon="!" tone="text-status-missing" />
-            <InsightCard ask={L("Confirm completion", "पूरा होने की पुष्टि")} said={L("No completion date", "पूरा होने की तारीख नहीं")} verdict={t("status.unclear")} icon="?" tone="text-status-unclear" />
+            <InsightCard ask={L("Repair the road", "सड़क की मरम्मत")} said={L("“repair work has been initiated”", "“मरम्मत का काम शुरू कर दिया गया है”")} verdict={t("status.partial")} icon="◐" tone="text-status-partial" askedLabel={t("analysis.youAsked")} responseLabel={t("analysis.theySaid")} />
+            <InsightCard ask={L("Replace safety barrier", "सुरक्षा बैरियर बदलें")} said={t("analysis.noMatch")} verdict={t("status.not_addressed")} icon="!" tone="text-status-missing" askedLabel={t("analysis.youAsked")} responseLabel={t("analysis.theySaid")} />
+            <InsightCard ask={L("Confirm completion", "काम पूरा होने की पुष्टि")} said={L("No completion date", "काम पूरा होने की तारीख नहीं दी गई")} verdict={t("status.unclear")} icon="?" tone="text-status-unclear" askedLabel={t("analysis.youAsked")} responseLabel={t("analysis.theySaid")} />
           </div>
           <Link href="/demo" className="btn-primary mt-4 inline-flex">
             {t("home.cta")} →
@@ -128,7 +128,7 @@ export default function HomePage() {
             <p className="mt-3 text-sm leading-relaxed text-ink-soft">
               {L(
                 "CPGRAMS already handles filing and routing of grievances. The gap is what happens after the reply arrives. Agla Kadam is an independent companion that helps a citizen understand a “Disposed” response and decide the correct next step — using synthetic data only.",
-                "CPGRAMS शिकायत दर्ज करने और भेजने का काम पहले से करता है। असली समस्या तब आती है जब जवाब आता है। अगला कदम एक स्वतंत्र साथी है जो नागरिक को “निपटाई गई” जवाब समझने और सही अगला कदम तय करने में मदद करता है — केवल काल्पनिक डेटा के साथ।"
+                "CPGRAMS शिकायत दर्ज करके सही विभाग तक पहुँचाता है। मुश्किल अक्सर जवाब मिलने के बाद आती है—क्या माँग सच में पूरी हुई? अगला कदम नागरिक को “निस्तारित” जवाब समझने और सही अगली कार्रवाई चुनने में मदद करता है। इस डेमो में केवल काल्पनिक डेटा है।"
               )}
             </p>
             <Link href="/how" className="mt-2 inline-block text-sm font-semibold text-accent hover:underline">
@@ -167,18 +167,22 @@ function InsightCard({
   verdict,
   icon,
   tone,
+  askedLabel,
+  responseLabel,
 }: {
   ask: string;
   said: string;
   verdict: string;
   icon: string;
   tone: string;
+  askedLabel: string;
+  responseLabel: string;
 }) {
   return (
     <div className="rounded-xl border border-black/5 bg-surface-soft p-3 text-sm">
-      <p className="text-xs font-semibold uppercase tracking-wide text-ink-faint">You asked</p>
+      <p className="text-xs font-semibold uppercase tracking-wide text-ink-faint">{askedLabel}</p>
       <p className="font-semibold text-ink">{ask}</p>
-      <p className="mt-2 text-xs font-semibold uppercase tracking-wide text-ink-faint">Department said</p>
+      <p className="mt-2 text-xs font-semibold uppercase tracking-wide text-ink-faint">{responseLabel}</p>
       <p className="text-ink-soft">{said}</p>
       <p className={`mt-2 flex items-center gap-1.5 font-bold ${tone}`}>
         <span aria-hidden="true">{icon}</span>

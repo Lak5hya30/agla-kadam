@@ -62,13 +62,13 @@ const ROWS: { en: string; hi: string; status: Status }[] = [
   { en: "OpenAI grievance-response comparison (needs API key)", hi: "OpenAI शिकायत-जवाब तुलना (API कुंजी चाहिए)", status: "Real" },
   { en: "User grievance filing form", hi: "उपयोगकर्ता शिकायत फॉर्म", status: "Real" },
   { en: "Offline comparison (when no API key)", hi: "ऑफ़लाइन तुलना (जब कोई API कुंजी न हो)", status: "Real" },
-  { en: "Request extraction", hi: "माँग निष्कर्षण", status: "Real" },
-  { en: "Evidence highlighting", hi: "प्रमाण हाइलाइटिंग", status: "Real" },
-  { en: "Hindi explanation", hi: "हिन्दी व्याख्या", status: "Real" },
-  { en: "Deterministic policy engine", hi: "निश्चित नीति इंजन", status: "Real" },
-  { en: "Feedback submission", hi: "प्रतिक्रिया सबमिशन", status: "Mock" },
-  { en: "Appeal submission", hi: "अपील सबमिशन", status: "Mock" },
-  { en: "Appeal tracking", hi: "अपील ट्रैकिंग", status: "Mock" },
+  { en: "Request extraction", hi: "शिकायत से अलग-अलग माँगें पहचानना", status: "Real" },
+  { en: "Evidence highlighting", hi: "जवाब में संबंधित अंश दिखाना", status: "Real" },
+  { en: "Hindi explanation", hi: "सरल हिन्दी में समझाना", status: "Real" },
+  { en: "Deterministic policy engine", hi: "तय नियमों से अगला कदम चुनना", status: "Real" },
+  { en: "Feedback submission", hi: "प्रतिक्रिया जमा करना", status: "Mock" },
+  { en: "Appeal submission", hi: "अपील जमा करना", status: "Mock" },
+  { en: "Appeal tracking", hi: "अपील की स्थिति देखना", status: "Mock" },
   { en: "Demo sign-in (display name only)", hi: "डेमो साइन-इन (केवल प्रदर्शित नाम)", status: "Mock" },
   { en: "Real CPGRAMS login / passwords / OTP", hi: "असली CPGRAMS लॉगिन / पासवर्ड / OTP", status: "Not used" },
   { en: "Government API integration", hi: "सरकारी API एकीकरण", status: "Not used" },
@@ -76,10 +76,10 @@ const ROWS: { en: string; hi: string; status: Status }[] = [
 ];
 
 const HOW_STEPS = [
-  { icon: "🧠", en: "OpenAI", hi: "OpenAI", enBody: "Understands and compares the two documents — extracts requests, actions, and evidence.", hiBody: "दोनों दस्तावेज़ों को समझता और तुलना करता है — माँगें, कार्रवाइयाँ और प्रमाण निकालता है।" },
-  { icon: "⚖️", en: "Rules engine", hi: "नियम इंजन", enBody: "Deterministic code decides workflow: feedback, appeal availability, jurisdiction.", hiBody: "निश्चित कोड तय करता है: प्रतिक्रिया, अपील उपलब्धता, क्षेत्राधिकार।" },
+  { icon: "🧠", en: "OpenAI", hi: "OpenAI", enBody: "Understands and compares the two documents — extracts requests, actions, and evidence.", hiBody: "शिकायत और जवाब को समझकर अलग-अलग माँगें, विभाग की कार्रवाई और उनसे जुड़े अंश पहचानता है।" },
+  { icon: "⚖️", en: "Rules engine", hi: "नियमों की जाँच", enBody: "Deterministic code decides workflow: feedback, appeal availability, jurisdiction.", hiBody: "तय नियम देखकर बताता है कि प्रतिक्रिया देनी है, अपील उपलब्ध है या मामला किसी और विभाग का है।" },
   { icon: "🙋", en: "You", hi: "आप", enBody: "Review every finding and confirm before anything is submitted.", hiBody: "हर निष्कर्ष की समीक्षा करें और कुछ भी भेजने से पहले पुष्टि करें।" },
-  { icon: "📮", en: "Mock adapter", hi: "मॉक एडाप्टर", enBody: "Simulates the government action and issues a demo reference number.", hiBody: "सरकारी कार्रवाई का अनुकरण करता है और एक डेमो संदर्भ संख्या देता है।" },
+  { icon: "📮", en: "Mock adapter", hi: "डेमो व्यवस्था", enBody: "Simulates the government action and issues a demo reference number.", hiBody: "सरकारी प्रणाली जैसी प्रक्रिया दिखाती है और केवल डेमो के लिए एक संदर्भ संख्या देती है।" },
 ];
 
 export default function HowPage() {

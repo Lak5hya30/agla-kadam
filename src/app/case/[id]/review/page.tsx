@@ -64,7 +64,7 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
   if (!appealText) {
     return (
       <div className="card space-y-3">
-        <p className="text-ink-soft">Please prepare your appeal first.</p>
+        <p className="text-ink-soft">{t("guard.appealFirst")}</p>
         <Link href={`/case/${c.id}/appeal`} className="btn-primary w-fit">
           {t("appeal.title")} →
         </Link>

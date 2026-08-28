@@ -33,7 +33,7 @@ export function CpgramsFooter() {
           <p className="text-xs leading-relaxed">
             {L(
               "A citizen-side companion that helps you understand a department response and your next step.",
-              "एक नागरिक-साथी जो विभाग के जवाब और आपके अगले कदम को समझने में मदद करता है।"
+              "विभाग का जवाब समझने और सही अगली कार्रवाई चुनने में नागरिकों की मदद करने वाला साथी।"
             )}
           </p>
         </div>

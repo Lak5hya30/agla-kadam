@@ -50,4 +50,11 @@ describe("appeal composer — grounding & no unnecessary appeals", () => {
       expect(lower).not.toContain(banned);
     }
   });
+
+  it("creates a natural Hindi draft when Hindi is selected", () => {
+    const appeal = composeAppeal(analysis, ["r1", "r2"], "hi");
+    expect(appeal.plainText).toContain("दोबारा समीक्षा");
+    expect(appeal.plainText).toContain("सुरक्षा बैरियर");
+    expect(appeal.plainText).not.toContain("Regarding");
+  });
 });

@@ -33,6 +33,14 @@ export default function FeedbackPage({ params }: { params: { id: string } }) {
       });
   }, [state.analysis]);
 
+  const localizedSuggested = suggested.map((item) => {
+    const coverage = state.analysis?.coverage.find((c) => c.request_id === item.id);
+    return {
+      ...item,
+      label: lang === "hi" && coverage?.reason_hi ? coverage.reason_hi : item.label,
+    };
+  });
+
   const [rating, setRating] = useState<FeedbackStatus>(
     state.feedbackRating ?? "poor"
   );
@@ -48,7 +56,7 @@ export default function FeedbackPage({ params }: { params: { id: string } }) {
     return (
       <div className="card space-y-3">
         <p className="text-ink-soft">
-          Please run the resolution analysis first.
+          {t("guard.analysisFirst")}
         </p>
         <Link href={`/case/${c.id}/analysis`} className="btn-primary w-fit">
           {t("case.check")} →
@@ -63,10 +71,10 @@ export default function FeedbackPage({ params }: { params: { id: string } }) {
 
   async function submit() {
     setSubmitting(true);
-    const unresolvedPoints = suggested
+    const unresolvedPoints = localizedSuggested
       .filter((s) => isChecked(s.id))
       .map((s) => s.label);
-    const selectedRequestIds = suggested
+    const selectedRequestIds = localizedSuggested
       .filter((s) => isChecked(s.id))
       .map((s) => s.id);
 
@@ -114,7 +122,7 @@ export default function FeedbackPage({ params }: { params: { id: string } }) {
         ))}
       </div>
 
-      {rating !== "satisfied" && suggested.length > 0 && (
+      {rating !== "satisfied" && localizedSuggested.length > 0 && (
         <section className="card space-y-3">
           <h2 className="text-lg font-bold text-ink">{t("feedback.unresolved")}</h2>
           <p className="text-xs text-ink-faint">
@@ -123,7 +131,7 @@ export default function FeedbackPage({ params }: { params: { id: string } }) {
               : "Pre-filled from the analysis. You can edit these."}
           </p>
           <ul className="space-y-2">
-            {suggested.map((s) => (
+            {localizedSuggested.map((s) => (
               <li key={s.id}>
                 <label className="flex cursor-pointer items-start gap-3 rounded-xl bg-surface-soft p-3">
                   <input

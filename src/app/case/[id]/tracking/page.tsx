@@ -25,7 +25,7 @@ export default function TrackingPage({ params }: { params: { id: string } }) {
   if (!state.appealId) {
     return (
       <div className="card space-y-3">
-        <p className="text-ink-soft">No demo appeal to track yet.</p>
+        <p className="text-ink-soft">{t("guard.noTracking")}</p>
         <Link href={`/case/${c.id}/appeal`} className="btn-primary w-fit">
           {t("appeal.title")} →
         </Link>
@@ -110,7 +110,7 @@ export default function TrackingPage({ params }: { params: { id: string } }) {
                   {t(s.key)}
                 </p>
                 {stateName === "current" && (
-                  <p className="text-xs text-accent">Current stage</p>
+                  <p className="text-xs text-accent">{t("track.current")}</p>
                 )}
               </div>
             </li>

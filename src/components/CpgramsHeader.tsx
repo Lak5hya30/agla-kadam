@@ -38,7 +38,7 @@ export function CpgramsHeader() {
       <div className="hidden border-b border-black/5 bg-surface-soft text-ink-soft sm:block">
         <div className="container-page flex flex-wrap items-center justify-between gap-x-4 gap-y-1 py-1 text-[11px] sm:text-xs">
           <span className="font-medium">
-            {L("Government-service grievance companion", "सरकारी सेवा शिकायत साथी")}{" "}
+            {L("Government-service grievance companion", "सरकारी शिकायत का जवाब समझने में मदद")}{" "}
             <span className="text-ink-faint">· {L("Demo", "डेमो")}</span>
           </span>
           <nav aria-label="Utility" className="flex items-center gap-1">
@@ -61,13 +61,13 @@ export function CpgramsHeader() {
             <GovSeal className="h-9 w-9 shrink-0 sm:h-12 sm:w-12" />
             <span className="leading-tight">
               <span className="hidden text-[11px] font-semibold text-gov-maroon sm:block sm:text-xs">
-                {L("Grievance Resolution Companion", "शिकायत समाधान साथी")}
+                {L("Grievance Resolution Companion", "शिकायत समाधान में आपका साथी")}
               </span>
               <span className="block text-base font-extrabold uppercase tracking-tight text-gov-maroon sm:text-lg">
                 Agla Kadam
               </span>
               <span className="hidden text-[10px] text-ink-faint sm:block sm:text-[11px]">
-                {L("Understand the response · Know your next step", "जवाब समझें · अगला कदम जानें")}
+                {L("Understand the response · Know your next step", "जवाब समझें · सही अगला कदम चुनें")}
               </span>
             </span>
           </Link>

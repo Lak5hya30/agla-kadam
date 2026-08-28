@@ -99,6 +99,13 @@ export default function AnalysisPage({ params }: { params: { id: string } }) {
   const summaryText =
     lang === "hi" ? analysis.summary.plain_language_hi : analysis.summary.plain_language;
 
+  const fallbackText =
+    lang === "hi" && state.fallbackReason
+      ? state.analysisSource === "offline"
+        ? "डेमो मोड: आपके लिखे पाठ की तुलना ऑफ़लाइन शब्द-मिलान से की गई है; किसी लाइव AI मॉडल का उपयोग नहीं हुआ।"
+        : "डेमो मोड: इस काल्पनिक मामले का पहले से तैयार विश्लेषण दिखाया जा रहा है।"
+      : state.fallbackReason;
+
   const allAddressed = display!.items.every(
     (i) => i.cov.displayStatus === "addressed"
   );
@@ -115,7 +122,7 @@ export default function AnalysisPage({ params }: { params: { id: string } }) {
           role="note"
           className="rounded-xl border border-amber-300/60 bg-amber-50 px-4 py-3 text-sm text-amber-900"
         >
-          {state.fallbackReason}
+          {fallbackText}
         </div>
       )}
 

@@ -8,11 +8,11 @@ import { useJourney } from "@/components/JourneyProvider";
 import { ReadAloud } from "@/components/ReadAloud";
 import { useResolvedCase } from "@/lib/useCase";
 import { CaseGuard } from "@/components/CaseGuard";
-import { decideNextAction } from "@/lib/policyEngine";
+import { decideNextAction, localizePolicyDecision } from "@/lib/policyEngine";
 import type { CaseContext } from "@/lib/types";
 
 export default function NextStepPage({ params }: { params: { id: string } }) {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const router = useRouter();
   const { state, update } = useJourney();
   const { demoCase: c, ready } = useResolvedCase(params.id);
@@ -30,7 +30,7 @@ export default function NextStepPage({ params }: { params: { id: string } }) {
 
   if (!ready || !c || !ctx) return <CaseGuard ready={ready} hasCase={!!c} />;
 
-  const decision = decideNextAction(ctx);
+  const decision = localizePolicyDecision(decideNextAction(ctx), lang);
 
   function pick(v: "resolved" | "unresolved") {
     setChoice(v);

@@ -12,19 +12,19 @@ export default function RedressProcessPage() {
       en: "Lodge a grievance",
       hi: "शिकायत दर्ज करें",
       enBody: "A citizen files a grievance against a public service.",
-      hiBody: "नागरिक किसी सार्वजनिक सेवा के विरुद्ध शिकायत दर्ज करता है।",
+      hiBody: "नागरिक किसी सरकारी सेवा से जुड़ी समस्या की शिकायत दर्ज करता है।",
     },
     {
       en: "Automated routing",
-      hi: "स्वचालित रूटिंग",
+      hi: "सही विभाग तक पहुँचना",
       enBody: "The grievance is routed to the concerned authority for redress.",
-      hiBody: "शिकायत निवारण के लिए संबंधित प्राधिकरण को भेजी जाती है।",
+      hiBody: "शिकायत कार्रवाई के लिए संबंधित विभाग या अधिकारी को भेजी जाती है।",
     },
     {
       en: "Redress & disposal",
-      hi: "निवारण एवं निपटान",
+      hi: "कार्रवाई और निस्तारण",
       enBody: "The authority examines the matter and marks the grievance disposed.",
-      hiBody: "प्राधिकरण मामले की जाँच करता है और शिकायत को निपटाया हुआ चिह्नित करता है।",
+      hiBody: "संबंधित विभाग मामले की जाँच करता है, जवाब देता है और शिकायत को निस्तारित दर्ज करता है।",
     },
     {
       en: "Understand the outcome  ← Agla Kadam",
@@ -32,7 +32,7 @@ export default function RedressProcessPage() {
       enBody:
         "This is where Agla Kadam helps: compare the request with the response, see what was actually addressed, and decide the next step — feedback or appeal.",
       hiBody:
-        "यहीं अगला कदम मदद करता है: माँग की जवाब से तुलना करें, देखें कि असल में क्या हुआ, और अगला कदम तय करें — प्रतिक्रिया या अपील।",
+        "यहीं अगला कदम मदद करता है: अपनी माँग को विभाग के जवाब से मिलाएँ, देखें कि सच में क्या हुआ और फिर प्रतिक्रिया या अपील में से सही रास्ता चुनें।",
       highlight: true,
     },
   ];

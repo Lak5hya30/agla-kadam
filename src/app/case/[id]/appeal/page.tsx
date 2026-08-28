@@ -7,20 +7,20 @@ import { useLang } from "@/components/LanguageProvider";
 import { useJourney } from "@/components/JourneyProvider";
 import { useResolvedCase } from "@/lib/useCase";
 import { CaseGuard } from "@/components/CaseGuard";
-import { decideNextAction } from "@/lib/policyEngine";
+import { decideNextAction, localizePolicyDecision } from "@/lib/policyEngine";
 import { unresolvedItems, composeAppeal, type ComposedAppeal } from "@/lib/appeal";
 import { StatusBadge } from "@/components/StatusBadge";
 import type { CoverageStatus } from "@/lib/schema";
 
 export default function AppealPage({ params }: { params: { id: string } }) {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const router = useRouter();
   const { state, update } = useJourney();
   const { demoCase: c, ready } = useResolvedCase(params.id);
 
   const items = useMemo(
-    () => (state.analysis ? unresolvedItems(state.analysis) : []),
-    [state.analysis]
+    () => (state.analysis ? unresolvedItems(state.analysis, lang) : []),
+    [state.analysis, lang]
   );
 
   // Default-checked semantics: an item is included unless explicitly
@@ -38,7 +38,7 @@ export default function AppealPage({ params }: { params: { id: string } }) {
     ...c.caseContext,
     feedback: state.feedbackRating ?? c.caseContext.feedback,
   };
-  const decision = decideNextAction(ctx);
+  const decision = localizePolicyDecision(decideNextAction(ctx), lang);
 
   if (!state.analysis) {
     return (
@@ -62,7 +62,7 @@ export default function AppealPage({ params }: { params: { id: string } }) {
     .map((i) => i.requestId);
 
   function generate() {
-    const composed = composeAppeal(state.analysis!, selectedIds);
+    const composed = composeAppeal(state.analysis!, selectedIds, lang);
     setDraft(composed);
     update({ selectedRequestIds: selectedIds, appealText: composed.plainText });
   }
@@ -104,13 +104,13 @@ export default function AppealPage({ params }: { params: { id: string } }) {
                 <dl className="ml-8 space-y-1 text-sm">
                   <div>
                     <dt className="inline text-xs font-semibold uppercase text-ink-faint">
-                      Original grievance:{" "}
+                      {t("appeal.original")}:{" "}
                     </dt>
                     <dd className="inline text-ink">“{item.requestSpan}”</dd>
                   </div>
                   <div>
                     <dt className="inline text-xs font-semibold uppercase text-ink-faint">
-                      Department response:{" "}
+                      {t("appeal.response")}:{" "}
                     </dt>
                     <dd className="inline text-ink-soft">
                       {item.responseSpans.length
@@ -152,7 +152,7 @@ export default function AppealPage({ params }: { params: { id: string } }) {
                   </button>
                   {openSources[i] && (
                     <p className="mt-1 rounded-lg bg-white p-2 text-xs text-ink-soft">
-                      <span className="font-semibold">Source: </span>
+                      <span className="font-semibold">{t("appeal.source")}: </span>
                       {p.source}
                       {p.sourceSpan ? ` — “${p.sourceSpan}”` : ""}
                     </p>
@@ -193,9 +193,10 @@ export default function AppealPage({ params }: { params: { id: string } }) {
 }
 
 function Guard({ href, label }: { href: string; label: string }) {
+  const { t } = useLang();
   return (
     <div className="card space-y-3">
-      <p className="text-ink-soft">Please run the resolution analysis first.</p>
+      <p className="text-ink-soft">{t("guard.analysisFirst")}</p>
       <Link href={href} className="btn-primary w-fit">
         {label} →
       </Link>

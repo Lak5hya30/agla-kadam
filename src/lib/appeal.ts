@@ -8,6 +8,7 @@
  * indicator is truthful by construction.
  */
 import type { ResolutionAnalysis } from "./schema";
+import type { Lang } from "./i18n";
 
 export interface AppealParagraph {
   text: string;
@@ -39,7 +40,8 @@ export interface ComposedAppeal {
  * does not encourage unnecessary appeals (§10, §65).
  */
 export function unresolvedItems(
-  analysis: ResolutionAnalysis
+  analysis: ResolutionAnalysis,
+  lang: Lang = "en"
 ): AppealUnresolvedItem[] {
   const reqById = new Map(analysis.original_requests.map((r) => [r.id, r]));
   const actionById = new Map(analysis.response_actions.map((a) => [a.id, a]));
@@ -53,9 +55,13 @@ export function unresolvedItems(
         .filter((s): s is string => Boolean(s));
       return {
         requestId: c.request_id,
-        requestText: req?.request ?? c.request_id,
+        requestText:
+          lang === "hi" && req?.request_hi
+            ? req.request_hi
+            : req?.request ?? c.request_id,
         requestSpan: req?.source_span ?? "",
-        responseSummary: c.reason,
+        responseSummary:
+          lang === "hi" && c.reason_hi ? c.reason_hi : c.reason,
         responseSpans: spans,
         status: c.status,
       };
@@ -69,10 +75,11 @@ export function unresolvedItems(
  */
 export function composeAppeal(
   analysis: ResolutionAnalysis,
-  selectedRequestIds: string[]
+  selectedRequestIds: string[],
+  lang: Lang = "en"
 ): ComposedAppeal {
   const selected = new Set(selectedRequestIds);
-  const items = unresolvedItems(analysis).filter((i) =>
+  const items = unresolvedItems(analysis, lang).filter((i) =>
     selected.has(i.requestId)
   );
 
@@ -80,42 +87,69 @@ export function composeAppeal(
 
   // 1. Opening — fixed, neutral, no invented facts.
   paragraphs.push({
-    text: "I am requesting a review of the resolution of my grievance.",
-    source: "Standard opening (no factual claim)",
+    text:
+      lang === "hi"
+        ? "मैं अपनी शिकायत के निस्तारण की दोबारा समीक्षा का अनुरोध करता/करती हूँ।"
+        : "I am requesting a review of the resolution of my grievance.",
+    source:
+      lang === "hi"
+        ? "मानक प्रारंभ (कोई तथ्यात्मक दावा नहीं)"
+        : "Standard opening (no factual claim)",
   });
 
   // 2. Restate the original requests, grounded verbatim.
   const requestLines = analysis.original_requests
-    .map((r, i) => `${i + 1}. ${r.request}`)
+    .map((r, i) => `${i + 1}. ${lang === "hi" && r.request_hi ? r.request_hi : r.request}`)
     .join("\n");
   paragraphs.push({
-    text: `My original grievance requested:\n${requestLines}`,
-    source: "Original grievance — all requests",
+    text:
+      lang === "hi"
+        ? `मेरी मूल शिकायत में ये माँगें थीं:\n${requestLines}`
+        : `My original grievance requested:\n${requestLines}`,
+    source:
+      lang === "hi"
+        ? "मूल शिकायत — सभी माँगें"
+        : "Original grievance — all requests",
   });
 
   // 3. For each SELECTED unresolved item, a grounded sentence.
   items.forEach((item, idx) => {
     let sentence: string;
     if (item.status === "not_addressed") {
-      sentence = `Regarding "${item.requestText}", I could not find a corresponding statement in the department response.`;
+      sentence =
+        lang === "hi"
+          ? `“${item.requestText}” के बारे में विभाग के जवाब में कोई स्पष्ट जानकारी नहीं मिली।`
+          : `Regarding "${item.requestText}", I could not find a corresponding statement in the department response.`;
     } else if (item.status === "partial") {
-      sentence = `Regarding "${item.requestText}", the response indicates action was started but does not confirm completion.`;
+      sentence =
+        lang === "hi"
+          ? `“${item.requestText}” के बारे में जवाब बताता है कि कार्रवाई शुरू हुई, लेकिन काम पूरा होने की पुष्टि नहीं करता।`
+          : `Regarding "${item.requestText}", the response indicates action was started but does not confirm completion.`;
     } else {
-      sentence = `Regarding "${item.requestText}", the department response is unclear about whether this was addressed.`;
+      sentence =
+        lang === "hi"
+          ? `“${item.requestText}” के बारे में विभाग के जवाब से साफ़ नहीं होता कि माँग पूरी हुई या नहीं।`
+          : `Regarding "${item.requestText}", the department response is unclear about whether this was addressed.`;
     }
     paragraphs.push({
       text: sentence,
-      source: `Original grievance — Request #${
+      source: `${lang === "hi" ? "मूल शिकायत — माँग" : "Original grievance — Request"} #${
         analysis.original_requests.findIndex((r) => r.id === item.requestId) + 1
-      }${item.responseSpans.length ? " · Department response" : ""}`,
+      }${item.responseSpans.length ? ` · ${lang === "hi" ? "विभाग का जवाब" : "Department response"}` : ""}`,
       sourceSpan: item.responseSpans[0],
     });
   });
 
   // 4. Closing request — neutral.
   paragraphs.push({
-    text: "Based on the information in the response provided, I request a review of the unresolved points listed above.",
-    source: "Standard closing (no factual claim)",
+    text:
+      lang === "hi"
+        ? "विभाग से मिले जवाब के आधार पर, कृपया ऊपर दिए गए बाकी बिंदुओं की दोबारा समीक्षा करें।"
+        : "Based on the information in the response provided, I request a review of the unresolved points listed above.",
+    source:
+      lang === "hi"
+        ? "मानक समापन (कोई तथ्यात्मक दावा नहीं)"
+        : "Standard closing (no factual claim)",
   });
 
   const plainText = paragraphs.map((p) => p.text).join("\n\n");

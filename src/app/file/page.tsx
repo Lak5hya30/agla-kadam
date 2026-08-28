@@ -10,8 +10,16 @@ import { saveAdhocCase, ADHOC_ID } from "@/lib/adhocCase";
 import type { DemoCase } from "@/lib/types";
 
 const CATEGORIES = [
-  "Post", "Telecom", "Banking", "Insurance", "Education",
-  "Road & Highways", "Health", "External Affairs", "Petroleum & Gas", "Other",
+  { value: "Post", hi: "डाक" },
+  { value: "Telecom", hi: "दूरसंचार" },
+  { value: "Banking", hi: "बैंकिंग" },
+  { value: "Insurance", hi: "बीमा" },
+  { value: "Education", hi: "शिक्षा" },
+  { value: "Road & Highways", hi: "सड़क और राजमार्ग" },
+  { value: "Health", hi: "स्वास्थ्य" },
+  { value: "External Affairs", hi: "विदेश मंत्रालय" },
+  { value: "Petroleum & Gas", hi: "पेट्रोलियम और गैस" },
+  { value: "Other", hi: "अन्य" },
 ];
 
 const SAMPLE_RESPONSE =
@@ -23,7 +31,7 @@ export default function FilePage() {
   const router = useRouter();
   const L = (en: string, hi: string) => (lang === "hi" ? hi : en);
 
-  const [category, setCategory] = useState(CATEGORIES[0]);
+  const [category, setCategory] = useState(CATEGORIES[0].value);
   const [jurisdiction, setJurisdiction] = useState<"central" | "state" | "ut">("central");
   const [subject, setSubject] = useState("");
   const [grievance, setGrievance] = useState("");
@@ -92,7 +100,7 @@ export default function FilePage() {
               className="min-h-[44px] w-full rounded-xl border border-black/15 bg-white px-3 text-base"
             >
               {CATEGORIES.map((c) => (
-                <option key={c} value={c}>{c}</option>
+                <option key={c.value} value={c.value}>{L(c.value, c.hi)}</option>
               ))}
             </select>
           </label>
